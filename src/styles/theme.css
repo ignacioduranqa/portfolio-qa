@@ -1,0 +1,58 @@
+:root {
+  /* Fondos */
+
+  --bg-main: #08161f;
+  --bg-section: #0f1f2d;
+  --bg-card: #16293a;
+  --bg-card-hover: #1c3449;
+
+  /* Texto */
+
+  --text-primary: #f8fafc;
+  --text-secondary: #b2c1cf;
+  --text-muted: #7f93a5;
+
+  /* Identidad */
+
+  --primary: #35d0c5;
+  --primary-light: #7de3b1;
+  --secondary: #4ba3ff;
+
+  /* Bordes */
+
+  --border-soft: rgba(53, 208, 197, 0.12);
+  --border: rgba(53, 208, 197, 0.22);
+  --border-strong: rgba(53, 208, 197, 0.45);
+
+  /* Gradientes */
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--primary-light)
+  );
+
+  --gradient-glow: linear-gradient(
+    135deg,
+    rgba(53, 208, 197, 0.22),
+    rgba(125, 227, 177, 0.1)
+  );
+
+  /* Sombras */
+
+  --shadow-sm: 0 8px 22px rgba(0, 0, 0, 0.18);
+  --shadow-md: 0 18px 45px rgba(0, 0, 0, 0.26);
+  --shadow-primary: 0 16px 35px rgba(53, 208, 197, 0.18);
+
+  /* Radios */
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-round: 999px;
+
+  /* Transiciones */
+
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}

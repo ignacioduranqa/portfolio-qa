@@ -1,0 +1,505 @@
+.contact {
+  position: relative;
+  z-index: 1;
+
+  min-height: 570px;
+  padding: 155px 64px 100px;
+  scroll-margin-top: 70px;
+
+  background:
+    radial-gradient(
+      circle at 18% 50%,
+      rgba(53, 208, 197, 0.06),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 78% 48%,
+      rgba(53, 208, 197, 0.045),
+      transparent 30%
+    ),
+    var(--bg-main);
+
+  overflow: hidden;
+}
+
+/* SEPARACIÓN DIAGONAL */
+
+.contact::before {
+  position: absolute;
+  top: -1px;
+  right: 0;
+  left: 0;
+  z-index: 1;
+
+  width: 100%;
+  height: 112px;
+
+  content: '';
+
+  background: var(--bg-section);
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 14%,
+    0 74%
+  );
+
+  pointer-events: none;
+}
+
+.contact__container {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns:
+    minmax(320px, 420px)
+    minmax(380px, 1fr);
+  align-items: center;
+  gap: clamp(55px, 8vw, 130px);
+
+  width: min(100%, 1180px);
+  margin: 0 auto;
+}
+
+/* TARJETA */
+
+.contact__card {
+  position: relative;
+
+  width: 100%;
+  padding: 40px 31px 34px;
+
+  text-align: left;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(22, 41, 58, 0.92),
+      rgba(13, 31, 43, 0.84)
+    );
+
+  border: 1px solid var(--border-soft);
+  border-radius: 24px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 24px 58px rgba(0, 0, 0, 0.22);
+
+  overflow: hidden;
+}
+
+.contact__card::before {
+  position: absolute;
+  top: 0;
+  left: 31px;
+
+  width: 58px;
+  height: 4px;
+
+  content: '';
+
+  background: var(--gradient-primary);
+  border-radius: var(--radius-round);
+
+  box-shadow: 0 0 16px rgba(53, 208, 197, 0.25);
+}
+
+.contact__eyebrow {
+  display: inline-block;
+
+  margin-bottom: 15px;
+
+  color: var(--primary);
+  font-size: 0.79rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.contact__title {
+  margin: 0;
+
+  color: var(--text-primary);
+  font-size: clamp(2.1rem, 3.3vw, 2.85rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+
+.contact__description {
+  margin: 19px 0 0;
+
+  color: var(--text-secondary);
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+.contact__description--secondary {
+  margin-top: 8px;
+}
+
+/* ICONOS SOCIALES */
+
+.contact__socials {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+
+  margin-top: 30px;
+}
+
+.contact__social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--text-secondary);
+  font-size: 1.67rem;
+
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast),
+    filter var(--transition-fast);
+}
+
+.contact__social-link:hover {
+  color: var(--primary-light);
+
+  transform: translateY(-3px);
+
+  filter: drop-shadow(
+    0 0 10px rgba(53, 208, 197, 0.3)
+  );
+}
+
+.contact__social-link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 5px;
+  border-radius: 4px;
+}
+
+/* ILUSTRACIÓN */
+
+.contact__illustration {
+  position: relative;
+
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+
+  transform: translateY(4px);
+}
+
+.contact__illustration-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 340px;
+  height: 270px;
+
+  background: rgba(53, 208, 197, 0.09);
+  border-radius: 50%;
+
+  filter: blur(85px);
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+}
+
+.contact__illustration-svg {
+  position: relative;
+  z-index: 1;
+
+  display: block;
+  width: min(100%, 520px);
+  height: auto;
+
+  overflow: visible;
+
+  filter: drop-shadow(
+    0 24px 40px rgba(0, 0, 0, 0.2)
+  );
+}
+
+/* SOBRE */
+
+.contact__envelope {
+  transform-origin: center;
+  animation: contact-envelope-float 5s ease-in-out infinite;
+}
+
+.contact__envelope-body {
+  fill: rgba(16, 38, 52, 0.74);
+
+  stroke: rgba(53, 208, 197, 0.58);
+  stroke-width: 3;
+}
+
+.contact__envelope-flap,
+.contact__envelope-fold {
+  stroke: rgba(53, 208, 197, 0.42);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.contact__envelope-highlight {
+  stroke: var(--primary-light);
+  stroke-width: 4;
+  stroke-linecap: round;
+
+  opacity: 0.75;
+}
+
+/* CARTA */
+
+.contact__letter {
+  transform-origin: center bottom;
+  animation: contact-letter-float 5s ease-in-out infinite;
+}
+
+.contact__letter-paper {
+  fill: rgba(19, 44, 59, 0.95);
+
+  stroke: rgba(125, 227, 177, 0.62);
+  stroke-width: 3;
+}
+
+.contact__letter-accent {
+  stroke: var(--primary-light);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.contact__letter-line {
+  stroke: rgba(191, 207, 215, 0.36);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.contact__letter-dot {
+  fill: var(--primary);
+
+  filter: drop-shadow(
+    0 0 8px rgba(53, 208, 197, 0.5)
+  );
+}
+
+/* AVIÓN DE PAPEL */
+
+.contact__paper-plane,
+.contact__paper-plane-line {
+  stroke: rgba(125, 227, 177, 0.55);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.contact__paper-plane {
+  fill: rgba(53, 208, 197, 0.04);
+
+  animation: contact-plane-float 6s ease-in-out infinite;
+}
+
+/* DETALLES FLOTANTES */
+
+.contact__floating-line {
+  stroke: rgba(53, 208, 197, 0.2);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 8 12;
+}
+
+.contact__floating-line--one {
+  animation: contact-dash 8s linear infinite;
+}
+
+.contact__floating-line--two {
+  animation: contact-dash 9s linear infinite reverse;
+}
+
+.contact__spark {
+  fill: var(--primary);
+
+  stroke: var(--primary);
+  stroke-width: 3;
+  stroke-linecap: round;
+
+  opacity: 0.55;
+
+  animation: contact-spark 3.5s ease-in-out infinite;
+}
+
+.contact__spark--two {
+  animation-delay: 0.8s;
+}
+
+.contact__spark--three {
+  animation-delay: 1.4s;
+}
+
+/* ANIMACIONES */
+
+@keyframes contact-envelope-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes contact-letter-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes contact-plane-float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(8px, -7px) rotate(2deg);
+  }
+}
+
+@keyframes contact-dash {
+  to {
+    stroke-dashoffset: -80;
+  }
+}
+
+@keyframes contact-spark {
+  0%,
+  100% {
+    opacity: 0.28;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+/* PANTALLAS GRANDES */
+
+@media (min-width: 1700px) {
+  .contact {
+    padding-right: 90px;
+    padding-left: 90px;
+  }
+
+  .contact__container {
+    width: min(100%, 1260px);
+  }
+}
+
+/* TABLET */
+
+@media (max-width: 950px) {
+  .contact {
+    min-height: 530px;
+    padding: 145px 40px 90px;
+  }
+
+  .contact__container {
+    grid-template-columns:
+      minmax(300px, 410px)
+      minmax(280px, 1fr);
+
+    gap: 40px;
+  }
+
+  .contact__illustration-svg {
+    width: min(100%, 410px);
+  }
+}
+
+/* TELÉFONOS */
+
+@media (max-width: 720px) {
+  .contact {
+    min-height: auto;
+    padding: 120px 18px 70px;
+    scroll-margin-top: 64px;
+  }
+
+  .contact::before {
+    height: 78px;
+
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 18%,
+      0 68%
+    );
+  }
+
+  .contact__container {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .contact__card {
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 35px 25px 31px;
+
+    border-radius: 21px;
+  }
+
+  .contact__card::before {
+    left: 25px;
+  }
+
+  .contact__eyebrow {
+    font-size: 0.74rem;
+  }
+
+  .contact__title {
+    font-size: 2.25rem;
+  }
+
+  .contact__description {
+    font-size: 0.93rem;
+    line-height: 1.6;
+  }
+
+  .contact__socials {
+    gap: 19px;
+    margin-top: 26px;
+  }
+
+  .contact__social-link {
+    font-size: 1.52rem;
+  }
+
+  .contact__illustration {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact__envelope,
+  .contact__letter,
+  .contact__paper-plane,
+  .contact__floating-line,
+  .contact__spark {
+    animation: none;
+  }
+}

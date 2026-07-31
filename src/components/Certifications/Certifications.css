@@ -1,0 +1,765 @@
+.certifications {
+  position: relative;
+  z-index: 1;
+
+  padding: 125px 64px 190px;
+  scroll-margin-top: 70px;
+
+  background:
+    radial-gradient(
+      circle at 88% 18%,
+      rgba(53, 208, 197, 0.08),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 10% 78%,
+      rgba(125, 227, 177, 0.045),
+      transparent 30%
+    ),
+    var(--bg-main);
+
+  overflow: hidden;
+}
+
+/* Resplandor decorativo */
+
+.certifications::before {
+  position: absolute;
+  top: 24%;
+  right: -220px;
+
+  width: 480px;
+  height: 480px;
+
+  content: '';
+
+  background: rgba(53, 208, 197, 0.065);
+  border-radius: 50%;
+
+  filter: blur(115px);
+  pointer-events: none;
+}
+
+/* Corte diagonal hacia proyectos */
+
+.certifications::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  z-index: 10;
+
+  width: 100%;
+  height: 120px;
+
+  content: '';
+
+  background: var(--bg-section);
+
+  clip-path: polygon(
+    0 68%,
+    100% 8%,
+    100% 100%,
+    0 100%
+  );
+
+  pointer-events: none;
+}
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
+.certifications__heading {
+  position: relative;
+  z-index: 2;
+
+  max-width: 850px;
+  margin: 0 auto 84px;
+
+  text-align: center;
+}
+
+.certifications__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 13px;
+
+  color: var(--primary);
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.certifications__eyebrow::before,
+.certifications__eyebrow::after {
+  width: 24px;
+  height: 1px;
+
+  content: '';
+
+  background: var(--gradient-primary);
+}
+
+.certifications__title {
+  margin: 0;
+
+  color: var(--text-primary);
+  font-size: clamp(2.4rem, 3.5vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+
+.certifications__description {
+  max-width: 720px;
+  margin: 18px auto 0;
+
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.certifications__line {
+  width: 74px;
+  height: 4px;
+
+  margin: 20px auto 0;
+
+  background: var(--gradient-primary);
+  border-radius: var(--radius-round);
+
+  box-shadow:
+    0 0 16px rgba(53, 208, 197, 0.22);
+}
+
+/* ========================================
+   LÍNEA DE TIEMPO
+======================================== */
+
+.certifications__timeline {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+
+  width: 100%;
+  max-width: 1180px;
+
+  margin: 0 auto;
+  padding: 16px 0 28px;
+}
+
+.certifications__timeline-center {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+
+  width: 2px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(53, 208, 197, 0.85) 8%,
+      rgba(125, 227, 177, 0.72) 50%,
+      rgba(53, 208, 197, 0.45) 92%,
+      transparent
+    );
+
+  border-radius: var(--radius-round);
+
+  box-shadow:
+    0 0 18px rgba(53, 208, 197, 0.18);
+
+  transform: translateX(-50%);
+}
+
+/* ========================================
+   ELEMENTOS DE LA LÍNEA DE TIEMPO
+======================================== */
+
+.certifications__item {
+  position: relative;
+
+  display: grid;
+  width: 50%;
+
+  margin-bottom: 62px;
+}
+
+.certifications__item:last-child {
+  margin-bottom: 0;
+}
+
+.certifications__item--left {
+  justify-self: start;
+  padding-right: 68px;
+}
+
+.certifications__item--right {
+  justify-self: end;
+  padding-left: 68px;
+}
+
+/* Marcador central */
+
+.certifications__marker {
+  position: absolute;
+  top: 38px;
+  z-index: 5;
+
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+
+  color: #06211f;
+  font-size: 0.82rem;
+
+  background: var(--gradient-primary);
+
+  border: 6px solid var(--bg-main);
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 0 1px rgba(53, 208, 197, 0.22),
+    0 0 20px rgba(53, 208, 197, 0.25);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.certifications__item--left .certifications__marker {
+  right: -19px;
+}
+
+.certifications__item--right .certifications__marker {
+  left: -19px;
+}
+
+.certifications__item:hover .certifications__marker {
+  transform: scale(1.08);
+
+  box-shadow:
+    0 0 0 1px rgba(53, 208, 197, 0.4),
+    0 0 26px rgba(53, 208, 197, 0.38);
+}
+
+/* Línea horizontal hacia la tarjeta */
+
+.certifications__item::before {
+  position: absolute;
+  top: 56px;
+
+  width: 48px;
+  height: 1px;
+
+  content: '';
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(53, 208, 197, 0.15),
+      rgba(53, 208, 197, 0.65)
+    );
+}
+
+.certifications__item--left::before {
+  right: 18px;
+}
+
+.certifications__item--right::before {
+  left: 18px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(53, 208, 197, 0.65),
+      rgba(53, 208, 197, 0.15)
+    );
+}
+
+/* ========================================
+   TARJETAS
+======================================== */
+
+.certifications__card {
+  position: relative;
+
+  padding: 28px;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(53, 208, 197, 0.12),
+      transparent 44%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(22, 44, 56, 0.82),
+      rgba(10, 27, 38, 0.76)
+    );
+
+  border: 1px solid var(--border-soft);
+  border-radius: 24px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    0 20px 48px rgba(0, 0, 0, 0.2);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    box-shadow 0.4s ease;
+}
+
+.certifications__card:hover {
+  transform: translateY(-7px);
+
+  border-color: rgba(53, 208, 197, 0.38);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 28px 62px rgba(0, 0, 0, 0.28),
+    0 0 24px rgba(53, 208, 197, 0.055);
+}
+
+/* Línea superior */
+
+.certifications__card::before {
+  position: absolute;
+  top: 0;
+  left: 28px;
+
+  width: 62px;
+  height: 3px;
+
+  content: '';
+
+  background: var(--gradient-primary);
+  border-radius: var(--radius-round);
+
+  box-shadow:
+    0 0 13px rgba(53, 208, 197, 0.24);
+}
+
+/* Brillo decorativo */
+
+.certifications__card::after {
+  position: absolute;
+  top: -90px;
+  right: -90px;
+
+  width: 180px;
+  height: 180px;
+
+  content: '';
+
+  background: rgba(53, 208, 197, 0.06);
+  border-radius: 50%;
+
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+/* ========================================
+   ENCABEZADO DE LA TARJETA
+======================================== */
+
+.certifications__card-header {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 22px;
+
+  margin-bottom: 17px;
+}
+
+.certifications__card-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+
+  min-width: 0;
+}
+
+.certifications__card-icon {
+  flex-shrink: 0;
+
+  width: 35px;
+  height: 35px;
+
+  margin-top: 3px;
+
+  color: var(--primary-light);
+
+  filter:
+    drop-shadow(
+      0 0 9px rgba(53, 208, 197, 0.25)
+    );
+
+  transition:
+    color 0.35s ease,
+    transform 0.35s ease,
+    filter 0.35s ease;
+}
+
+.certifications__card:hover .certifications__card-icon {
+  color: var(--secondary);
+
+  transform:
+    translateY(-2px)
+    rotate(-3deg)
+    scale(1.06);
+
+  filter:
+    drop-shadow(
+      0 0 13px rgba(125, 227, 177, 0.35)
+    );
+}
+
+.certifications__year {
+  display: inline-block;
+
+  margin-bottom: 5px;
+
+  color: var(--primary);
+  font-size: 0.77rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.certifications__card h3 {
+  margin: 0;
+
+  color: var(--text-primary);
+  font-size: 1.16rem;
+  font-weight: 750;
+  line-height: 1.38;
+  letter-spacing: -0.018em;
+}
+
+.certifications__category {
+  flex-shrink: 0;
+
+  padding: 6px 10px;
+
+  color: var(--primary-light);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+
+  background: rgba(53, 208, 197, 0.07);
+
+  border: 1px solid rgba(53, 208, 197, 0.16);
+  border-radius: var(--radius-round);
+}
+
+/* ========================================
+   METADATOS
+======================================== */
+
+.certifications__metadata {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+
+  margin: 0 0 16px;
+  padding-left: 50px;
+
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.certifications__metadata-separator {
+  color: rgba(53, 208, 197, 0.65);
+}
+
+/* ========================================
+   DESCRIPCIÓN
+======================================== */
+
+.certifications__card-description {
+  position: relative;
+  z-index: 2;
+
+  margin: 0;
+
+  color: var(--text-secondary);
+  font-size: 0.89rem;
+  line-height: 1.68;
+}
+
+/* ========================================
+   BOTÓN DE CREDENCIAL
+======================================== */
+
+.certifications__credential-button {
+  position: relative;
+  z-index: 2;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  margin-top: 22px;
+  padding: 10px 15px;
+
+  color: var(--primary-light);
+  font-size: 0.78rem;
+  font-weight: 750;
+  text-decoration: none;
+
+  background: rgba(53, 208, 197, 0.06);
+
+  border: 1px solid rgba(53, 208, 197, 0.23);
+  border-radius: var(--radius-round);
+
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.certifications__credential-button svg {
+  font-size: 0.72rem;
+
+  transition:
+    transform 0.3s ease;
+}
+
+.certifications__credential-button:hover {
+  color: var(--text-primary);
+
+  background: rgba(53, 208, 197, 0.11);
+  border-color: rgba(53, 208, 197, 0.48);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.18),
+    0 0 14px rgba(53, 208, 197, 0.08);
+}
+
+.certifications__credential-button:hover svg {
+  transform:
+    translate(2px, -2px);
+}
+
+.certifications__credential-button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+
+/* ========================================
+   PANTALLAS GRANDES
+======================================== */
+
+@media (min-width: 1700px) {
+  .certifications {
+    padding-right: 90px;
+    padding-left: 90px;
+  }
+
+  .certifications__timeline {
+    max-width: 1260px;
+  }
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 950px) {
+  .certifications {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+
+  .certifications__timeline-center {
+    left: 21px;
+  }
+
+  .certifications__item {
+    width: 100%;
+    padding: 0 0 0 78px;
+  }
+
+  .certifications__item--left,
+  .certifications__item--right {
+    justify-self: stretch;
+  }
+
+  .certifications__item--left .certifications__marker,
+  .certifications__item--right .certifications__marker {
+    right: auto;
+    left: 2px;
+  }
+
+  .certifications__item--left::before,
+  .certifications__item--right::before {
+    right: auto;
+    left: 40px;
+
+    width: 38px;
+
+    background:
+      linear-gradient(
+        90deg,
+        rgba(53, 208, 197, 0.65),
+        rgba(53, 208, 197, 0.12)
+      );
+  }
+}
+
+/* ========================================
+   TELÉFONOS
+======================================== */
+
+@media (max-width: 600px) {
+  .certifications {
+    padding: 105px 18px 155px;
+    scroll-margin-top: 64px;
+  }
+
+  .certifications::after {
+    height: 82px;
+
+    clip-path: polygon(
+      0 67%,
+      100% 18%,
+      100% 100%,
+      0 100%
+    );
+  }
+
+  .certifications__heading {
+    margin-bottom: 58px;
+  }
+
+  .certifications__eyebrow {
+    font-size: 0.76rem;
+  }
+
+  .certifications__eyebrow::before,
+  .certifications__eyebrow::after {
+    width: 15px;
+  }
+
+  .certifications__title {
+    font-size: 2.15rem;
+  }
+
+  .certifications__description {
+    font-size: 0.93rem;
+  }
+
+  .certifications__timeline {
+    padding-top: 10px;
+  }
+
+  .certifications__timeline-center {
+    left: 17px;
+  }
+
+  .certifications__item {
+    margin-bottom: 42px;
+    padding-left: 55px;
+  }
+
+  .certifications__marker {
+    top: 32px;
+    left: 0 !important;
+
+    width: 34px;
+    height: 34px;
+
+    border-width: 5px;
+    font-size: 0.72rem;
+  }
+
+  .certifications__item--left::before,
+  .certifications__item--right::before {
+    top: 49px;
+    left: 32px;
+
+    width: 23px;
+  }
+
+  .certifications__card {
+    padding: 23px 20px;
+    border-radius: 20px;
+  }
+
+  .certifications__card::before {
+    left: 20px;
+    width: 52px;
+  }
+
+  .certifications__card-header {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .certifications__category {
+    align-self: flex-start;
+    margin-left: 50px;
+  }
+
+  .certifications__card-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .certifications__card h3 {
+    font-size: 1.06rem;
+  }
+
+  .certifications__metadata {
+    padding-left: 47px;
+    font-size: 0.76rem;
+  }
+
+  .certifications__card-description {
+    font-size: 0.85rem;
+  }
+
+  .certifications__credential-button {
+    width: 100%;
+    justify-content: center;
+
+    margin-top: 20px;
+  }
+}
+
+/* ========================================
+   MOVIMIENTO REDUCIDO
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .certifications__marker,
+  .certifications__card,
+  .certifications__card-icon,
+  .certifications__credential-button,
+  .certifications__credential-button svg {
+    transition: none;
+  }
+}

@@ -1,0 +1,49 @@
+:root {
+  /* Fondo */
+
+  --bg-main: #08161f;
+  --bg-section: #0f1f2d;
+  --bg-card: #16293a;
+  --bg-card-hover: #1c3449;
+
+  /* Texto */
+
+  --text-primary: #f8fafc;
+  --text-secondary: #b2c1cf;
+  --text-muted: #7f93a5;
+
+  /* Colores principales */
+
+  --primary: #35d0c5;
+  --primary-light: #7de3b1;
+
+  --secondary: #4ba3ff;
+
+  /* Extras */
+
+  --border: rgba(53, 208, 197, 0.18);
+
+  --shadow:
+    0 18px 45px rgba(0, 0, 0, 0.25);
+
+  --transition: 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-family:
+    Inter,
+    system-ui,
+    sans-serif;
+}
