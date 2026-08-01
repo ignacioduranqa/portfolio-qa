@@ -78,26 +78,15 @@ function About() {
             <h3>Analista QA Funcional</h3>
 
             <p>
-              Soy Analista QA Funcional con experiencia en proyectos
-              web, participando en el diseño y ejecución de casos de
-              prueba, revisión de historias de usuario, validación de
-              criterios de aceptación, pruebas funcionales y de
-              regresión, además de la gestión y seguimiento de
-              incidencias utilizando Jira.
+              Soy Analista QA Funcional con experiencia en proyectos web. He participado en el diseño y ejecución de casos de prueba, revisión de historias de usuario, validación de criterios de aceptación y ejecución de pruebas funcionales y de regresión. También he gestionado y realizado seguimiento de incidencias mediante Jira.
             </p>
 
             <p>
-              Participé en proyectos para AFC Chile trabajando bajo
-              metodología Scrum, colaborando con equipos de desarrollo
-              y negocio para asegurar la calidad de las funcionalidades
-              antes de su liberación.
+              Participé en proyectos para AFC Chile bajo metodología Scrum, colaborando con equipos de desarrollo, QA y negocio para asegurar la calidad de las funcionalidades antes de su liberación.
             </p>
 
             <p>
-              Me interesa seguir creciendo profesionalmente en el área
-              de Calidad de Software, aportando mediante pruebas
-              funcionales, una comunicación efectiva con el equipo y
-              una mejora continua de los procesos de calidad.
+              Me interesa seguir creciendo en el área de Calidad de Software, aportando mediante pruebas funcionales, comunicación efectiva y mejora continua de los procesos de calidad.
             </p>
 
             <div className="about__highlights">

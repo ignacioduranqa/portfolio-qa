@@ -35,9 +35,7 @@ function Hero() {
         </h2>
 
         <p className="hero__description">
-          Experiencia en pruebas funcionales, revisión de historias de
-          usuario, validación de criterios de aceptación y gestión de
-          incidencias.
+          Cuento con experiencia en pruebas funcionales, revisión de historias de usuario, validación de criterios de aceptación y gestión de incidencias.
         </p>
 
         <div className="hero__actions">

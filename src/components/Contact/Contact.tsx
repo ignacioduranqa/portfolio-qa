@@ -150,14 +150,13 @@ function Contact() {
           </p>
 
           <p className="contact__description contact__description--secondary">
-            Si quieres conversar sobre una vacante o un proyecto, puedes
-            escribirme por correo o contactarme a través de LinkedIn.
+            Puedes contactarme por correo o LinkedIn para conversar sobre oportunidades laborales o proyectos.
           </p>
 
           <div className="contact__socials">
             <a
               className="contact__social-link"
-              href="ignaciosanhueza1516@gmail.com"
+              href="mailto:ignaciosanhueza1516@gmail.com"
               aria-label="Enviar correo a Ignacio"
               title="Correo"
             >
@@ -177,7 +176,7 @@ function Contact() {
 
             <a
               className="contact__social-link"
-              href="TU_ENLACE_DE_GITHUB"
+              href="https://github.com/ignacioduranqa"
               target="_blank"
               rel="noreferrer"
               aria-label="Visitar perfil de GitHub"

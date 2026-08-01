@@ -46,7 +46,7 @@ export const experiences: Experience[] = [
   {
     company: 'ACL Tecnología',
     role: 'Analista QA Funcional',
-    period: '2025 - 2026',
+    period: 'Diciembre 2025 - Enero 2026',
     description:
       'Participé en proyectos web realizando diseño y ejecución de casos de prueba, revisión de historias de usuario, validación de criterios de aceptación, pruebas funcionales y de regresión, además de la gestión y seguimiento de incidencias.',
     highlights: [
