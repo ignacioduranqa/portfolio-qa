@@ -1,8 +1,9 @@
+import { useEffect, useState } from 'react'
+
 import {
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+  FaBars,
+  FaXmark,
+} from 'react-icons/fa6'
 
 import './Navbar.css'
 
@@ -42,10 +43,13 @@ function Navbar() {
   const [activeSection, setActiveSection] =
     useState('inicio')
 
-  const linkRefs = useRef<
-    Record<string, HTMLAnchorElement | null>
-  >({})
+  const [isMenuOpen, setIsMenuOpen] =
+    useState(false)
 
+  /*
+   * Detecta qué sección está visible para
+   * marcar el enlace correspondiente.
+   */
   useEffect(() => {
     const sections = sectionIds
       .map((id) => document.getElementById(id))
@@ -59,9 +63,13 @@ function Navbar() {
     }
 
     function updateActiveSection() {
-      const navbarHeight = 80
+      const navbarHeight =
+        window.innerWidth <= 760 ? 70 : 82
+
       const referencePoint =
-        window.scrollY + navbarHeight + window.innerHeight * 0.3
+        window.scrollY +
+        navbarHeight +
+        window.innerHeight * 0.28
 
       let currentSection = 'inicio'
 
@@ -73,7 +81,7 @@ function Navbar() {
 
       const isAtPageBottom =
         window.innerHeight + window.scrollY >=
-        document.documentElement.scrollHeight - 4
+        document.documentElement.scrollHeight - 5
 
       if (isAtPageBottom) {
         currentSection = 'contacto'
@@ -108,80 +116,191 @@ function Navbar() {
     }
   }, [])
 
+  /*
+   * Bloquea el desplazamiento de la página
+   * cuando el menú móvil está abierto.
+   */
   useEffect(() => {
-    const activeLink = linkRefs.current[activeSection]
+    if (!isMenuOpen) {
+      document.body.style.overflow = ''
+      return
+    }
 
-    activeLink?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center',
-    })
-  }, [activeSection])
+    document.body.style.overflow = 'hidden'
 
-  function handleNavigation(sectionId: string) {
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isMenuOpen])
+
+  /*
+   * Permite cerrar el menú con Escape.
+   */
+  useEffect(() => {
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setIsMenuOpen(false)
+      }
+    }
+
+    window.addEventListener(
+      'keydown',
+      handleEscape,
+    )
+
+    return () => {
+      window.removeEventListener(
+        'keydown',
+        handleEscape,
+      )
+    }
+  }, [])
+
+  /*
+   * Cierra el menú si la ventana vuelve
+   * al tamaño de escritorio.
+   */
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth > 760) {
+        setIsMenuOpen(false)
+      }
+    }
+
+    window.addEventListener(
+      'resize',
+      handleResize,
+    )
+
+    return () => {
+      window.removeEventListener(
+        'resize',
+        handleResize,
+      )
+    }
+  }, [])
+
+  function handleNavigation(
+    sectionId: string,
+  ) {
     setActiveSection(sectionId)
+    setIsMenuOpen(false)
+  }
+
+  function toggleMenu() {
+    setIsMenuOpen((currentState) =>
+      !currentState
+    )
   }
 
   return (
-    <nav
-      className="navbar"
-      aria-label="Navegación principal"
-    >
-      <a
-        ref={(element) => {
-          linkRefs.current.inicio = element
-        }}
-        className={`navbar__logo ${
-          activeSection === 'inicio'
-            ? 'navbar__logo--active'
+    <>
+      <nav
+        className="navbar"
+        aria-label="Navegación principal"
+      >
+        <a
+          className={`navbar__logo ${
+            activeSection === 'inicio'
+              ? 'navbar__logo--active'
+              : ''
+          }`}
+          href="#inicio"
+          aria-label="Ir al inicio"
+          aria-current={
+            activeSection === 'inicio'
+              ? 'page'
+              : undefined
+          }
+          onClick={() =>
+            handleNavigation('inicio')
+          }
+        >
+          <span className="navbar__logo-text">
+            IS
+          </span>
+        </a>
+
+        <button
+          className={`navbar__menu-button ${
+            isMenuOpen
+              ? 'navbar__menu-button--open'
+              : ''
+          }`}
+          type="button"
+          aria-label={
+            isMenuOpen
+              ? 'Cerrar menú'
+              : 'Abrir menú'
+          }
+          aria-expanded={isMenuOpen}
+          aria-controls="navbar-navigation"
+          onClick={toggleMenu}
+        >
+          {isMenuOpen ? (
+            <FaXmark aria-hidden="true" />
+          ) : (
+            <FaBars aria-hidden="true" />
+          )}
+        </button>
+
+        <ul
+          className={`navbar__links ${
+            isMenuOpen
+              ? 'navbar__links--open'
+              : ''
+          }`}
+          id="navbar-navigation"
+        >
+          {navigationItems.map((item) => {
+            const isActive =
+              activeSection === item.id
+
+            return (
+              <li key={item.id}>
+                <a
+                  className={
+                    isActive
+                      ? 'navbar__link navbar__link--active'
+                      : 'navbar__link'
+                  }
+                  href={`#${item.id}`}
+                  aria-current={
+                    isActive
+                      ? 'page'
+                      : undefined
+                  }
+                  onClick={() =>
+                    handleNavigation(item.id)
+                  }
+                >
+                  <span>{item.label}</span>
+
+                  <span
+                    className="navbar__link-arrow"
+                    aria-hidden="true"
+                  >
+                    →
+                  </span>
+                </a>
+              </li>
+            )
+          })}
+        </ul>
+      </nav>
+
+      <button
+        className={`navbar__overlay ${
+          isMenuOpen
+            ? 'navbar__overlay--visible'
             : ''
         }`}
-        href="#inicio"
-        aria-label="Ir al inicio"
-        aria-current={
-          activeSection === 'inicio'
-            ? 'page'
-            : undefined
-        }
-        onClick={() => handleNavigation('inicio')}
-      >
-        <span className="navbar__logo-text">
-          IS
-        </span>
-      </a>
-
-      <ul className="navbar__links">
-        {navigationItems.map((item) => {
-          const isActive =
-            activeSection === item.id
-
-          return (
-            <li key={item.id}>
-              <a
-                ref={(element) => {
-                  linkRefs.current[item.id] =
-                    element
-                }}
-                className={
-                  isActive
-                    ? 'navbar__link navbar__link--active'
-                    : 'navbar__link'
-                }
-                href={`#${item.id}`}
-                aria-current={
-                  isActive ? 'page' : undefined
-                }
-                onClick={() =>
-                  handleNavigation(item.id)
-                }
-              >
-                {item.label}
-              </a>
-            </li>
-          )
-        })}
-      </ul>
-    </nav>
+        type="button"
+        aria-label="Cerrar menú de navegación"
+        tabIndex={isMenuOpen ? 0 : -1}
+        onClick={() => setIsMenuOpen(false)}
+      />
+    </>
   )
 }
 

@@ -6,16 +6,22 @@ import './Experience.css'
 import { experiences } from '../../data/experience'
 
 function Experience() {
-  const [openProject, setOpenProject] = useState<string | null>(null)
+  const [openProject, setOpenProject] =
+    useState<string | null>(null)
 
   function toggleProject(projectName: string) {
     setOpenProject((currentProject) =>
-      currentProject === projectName ? null : projectName,
+      currentProject === projectName
+        ? null
+        : projectName,
     )
   }
 
   return (
-    <section className="experience" id="experiencia">
+    <section
+      className="experience"
+      id="experiencia"
+    >
       <Reveal
         direction="up"
         duration={700}
@@ -30,7 +36,10 @@ function Experience() {
             Experiencia
           </h2>
 
-          <div className="experience__line"></div>
+          <div
+            className="experience__line"
+            aria-hidden="true"
+          />
         </div>
       </Reveal>
 
@@ -39,13 +48,16 @@ function Experience() {
           <Reveal
             key={`${experience.company}-${experience.role}-${experience.period}`}
             direction="up"
-            delay={index * 100}
+            delay={Math.min(index * 90, 180)}
             duration={700}
-            distance={28}
+            distance={26}
             className="experience__card-reveal"
           >
             <article className="experience__card">
-              <div className="experience__marker"></div>
+              <div
+                className="experience__marker"
+                aria-hidden="true"
+              />
 
               <div className="experience__card-content">
                 <span className="experience__period">
@@ -60,93 +72,131 @@ function Experience() {
 
                 {experience.highlights && (
                   <ul className="experience__highlights">
-                    {experience.highlights.map((highlight) => (
-                      <li key={highlight}>
-                        {highlight}
-                      </li>
-                    ))}
+                    {experience.highlights.map(
+                      (highlight) => (
+                        <li key={highlight}>
+                          {highlight}
+                        </li>
+                      ),
+                    )}
                   </ul>
                 )}
 
                 {experience.client && (
                   <div className="experience__client">
                     <span>Cliente</span>
-                    <strong>{experience.client}</strong>
+
+                    <strong>
+                      {experience.client}
+                    </strong>
                   </div>
                 )}
 
                 {experience.projects && (
                   <div className="experience__projects">
-                    <h5>Proyectos en los que participé</h5>
+                    <h5>
+                      Proyectos en los que participé
+                    </h5>
 
                     <div className="experience__project-list">
-                      {experience.projects.map((project) => {
-                        const isOpen =
-                          openProject === project.shortName
+                      {experience.projects.map(
+                        (project) => {
+                          const isOpen =
+                            openProject ===
+                            project.shortName
 
-                        return (
-                          <article
-                            className={`experience__project ${
-                              project.featured
-                                ? 'experience__project--featured'
-                                : ''
-                            }`}
-                            key={project.shortName}
-                          >
-                            <button
-                              type="button"
-                              className="experience__project-button"
-                              onClick={() =>
-                                toggleProject(project.shortName)
-                              }
-                              aria-expanded={isOpen}
+                          const detailsId =
+                            `project-${project.shortName}-details`
+
+                          return (
+                            <article
+                              className={`experience__project ${
+                                project.featured
+                                  ? 'experience__project--featured'
+                                  : ''
+                              } ${
+                                isOpen
+                                  ? 'experience__project--open'
+                                  : ''
+                              }`}
+                              key={project.shortName}
                             >
-                              <div className="experience__project-main">
-                                <div className="experience__project-labels">
-                                  <span className="experience__project-code">
-                                    {project.shortName}
-                                  </span>
-
-                                  {project.featured && (
-                                    <span className="experience__project-featured">
-                                      Proyecto principal
+                              <button
+                                type="button"
+                                className="experience__project-button"
+                                onClick={() =>
+                                  toggleProject(
+                                    project.shortName,
+                                  )
+                                }
+                                aria-expanded={isOpen}
+                                aria-controls={detailsId}
+                              >
+                                <div className="experience__project-main">
+                                  <div className="experience__project-labels">
+                                    <span className="experience__project-code">
+                                      {project.shortName}
                                     </span>
-                                  )}
+
+                                    {project.featured && (
+                                      <span className="experience__project-featured">
+                                        Proyecto principal
+                                      </span>
+                                    )}
+                                  </div>
+
+                                  <h6>{project.name}</h6>
                                 </div>
 
-                                <h6>{project.name}</h6>
-                              </div>
+                                <span
+                                  className={`experience__project-arrow ${
+                                    isOpen
+                                      ? 'experience__project-arrow--open'
+                                      : ''
+                                  }`}
+                                  aria-hidden="true"
+                                >
+                                  ▼
+                                </span>
+                              </button>
 
-                              <span
-                                className={`experience__project-arrow ${
+                              <div
+                                className={`experience__project-details-wrapper ${
                                   isOpen
-                                    ? 'experience__project-arrow--open'
+                                    ? 'experience__project-details-wrapper--open'
                                     : ''
                                 }`}
-                                aria-hidden="true"
+                                id={detailsId}
+                                aria-hidden={!isOpen}
                               >
-                                ▼
-                              </span>
-                            </button>
+                                <div className="experience__project-details">
+                                  <p>
+                                    {project.description}
+                                  </p>
 
-                            {isOpen && (
-                              <div className="experience__project-details">
-                                <p>{project.description}</p>
-
-                                <ul className="experience__project-responsibilities">
-                                  {project.responsibilities.map(
-                                    (responsibility) => (
-                                      <li key={responsibility}>
-                                        {responsibility}
-                                      </li>
-                                    ),
-                                  )}
-                                </ul>
+                                  <ul className="experience__project-responsibilities">
+                                    {project.responsibilities.map(
+                                      (
+                                        responsibility,
+                                      ) => (
+                                        <li
+                                          key={
+                                            responsibility
+                                          }
+                                        >
+                                          {
+                                            responsibility
+                                          }
+                                        </li>
+                                      ),
+                                    )}
+                                  </ul>
+                                </div>
                               </div>
-                            )}
-                          </article>
-                        )
-                      })}
+                            </article>
+                          )
+                        },
+                      )}
                     </div>
                   </div>
                 )}

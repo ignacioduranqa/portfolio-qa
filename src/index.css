@@ -1,49 +1,162 @@
 :root {
-  /* Fondo */
+  /* ========================================
+     FONDOS
+  ======================================== */
 
   --bg-main: #08161f;
   --bg-section: #0f1f2d;
   --bg-card: #16293a;
   --bg-card-hover: #1c3449;
 
-  /* Texto */
+  /* ========================================
+     TEXTO
+  ======================================== */
 
   --text-primary: #f8fafc;
   --text-secondary: #b2c1cf;
   --text-muted: #7f93a5;
 
-  /* Colores principales */
+  /* ========================================
+     COLORES PRINCIPALES
+  ======================================== */
 
   --primary: #35d0c5;
   --primary-light: #7de3b1;
-
   --secondary: #4ba3ff;
 
-  /* Extras */
+  --gradient-primary:
+    linear-gradient(
+      90deg,
+      var(--primary),
+      var(--primary-light)
+    );
 
-  --border: rgba(53, 208, 197, 0.18);
+  /* ========================================
+     BORDES
+  ======================================== */
+
+  --border:
+    rgba(53, 208, 197, 0.18);
+
+  --border-soft:
+    rgba(53, 208, 197, 0.1);
+
+  --border-strong:
+    rgba(53, 208, 197, 0.48);
+
+  /* ========================================
+     SOMBRAS
+  ======================================== */
 
   --shadow:
     0 18px 45px rgba(0, 0, 0, 0.25);
 
+  /* ========================================
+     RADIOS
+  ======================================== */
+
+  --radius-round: 999px;
+
+  /* ========================================
+     TRANSICIONES
+  ======================================== */
+
+  --transition-fast: 0.25s ease;
+  --transition-normal: 0.35s ease;
   --transition: 0.3s ease;
 }
+
+/* ========================================
+   REINICIO GENERAL
+======================================== */
 
 * {
   margin: 0;
   padding: 0;
+
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+
+  /*
+   * Evita que el navbar tape el inicio
+   * de las secciones al navegar.
+   */
+  scroll-padding-top: 92px;
 }
 
 body {
-  background: var(--bg-main);
+  min-width: 320px;
+  min-height: 100vh;
+
   color: var(--text-primary);
+
+  background: var(--bg-main);
+
   font-family:
     Inter,
     system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
     sans-serif;
+
+  overflow-x: hidden;
+}
+
+/*
+ * Mantiene todas las secciones separadas
+ * del navbar fijo.
+ */
+
+section[id] {
+  scroll-margin-top: 92px;
+}
+
+button,
+a,
+input,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color:
+    transparent;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+/* ========================================
+   TABLET Y MÓVIL
+======================================== */
+
+@media (max-width: 760px) {
+  html {
+    scroll-padding-top: 76px;
+  }
+
+  section[id] {
+    scroll-margin-top: 76px;
+  }
+}
+
+/* ========================================
+   MOVIMIENTO REDUCIDO
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

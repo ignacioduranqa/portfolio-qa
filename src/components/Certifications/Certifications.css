@@ -3,7 +3,6 @@
   z-index: 1;
 
   padding: 125px 64px 190px;
-  scroll-margin-top: 70px;
 
   background:
     radial-gradient(
@@ -21,7 +20,9 @@
   overflow: hidden;
 }
 
-/* Resplandor decorativo */
+/* ========================================
+   RESPLANDOR DECORATIVO
+======================================== */
 
 .certifications::before {
   position: absolute;
@@ -37,10 +38,13 @@
   border-radius: 50%;
 
   filter: blur(115px);
+
   pointer-events: none;
 }
 
-/* Corte diagonal hacia proyectos */
+/* ========================================
+   CORTE HACIA PROYECTOS
+======================================== */
 
 .certifications::after {
   position: absolute;
@@ -56,12 +60,13 @@
 
   background: var(--bg-section);
 
-  clip-path: polygon(
-    0 68%,
-    100% 8%,
-    100% 100%,
-    0 100%
-  );
+  clip-path:
+    polygon(
+      0 68%,
+      100% 8%,
+      100% 100%,
+      0 100%
+    );
 
   pointer-events: none;
 }
@@ -179,7 +184,23 @@
 }
 
 /* ========================================
-   ELEMENTOS DE LA LÍNEA DE TIEMPO
+   SOPORTE PARA REVEAL
+======================================== */
+
+.certifications__item-reveal {
+  width: 100%;
+}
+
+.certifications__item-reveal:not(:last-child) {
+  margin-bottom: 62px;
+}
+
+.certifications__item-reveal > .certifications__item {
+  margin-bottom: 0;
+}
+
+/* ========================================
+   ELEMENTOS DEL TIMELINE
 ======================================== */
 
 .certifications__item {
@@ -188,24 +209,24 @@
   display: grid;
   width: 50%;
 
-  margin-bottom: 62px;
-}
-
-.certifications__item:last-child {
   margin-bottom: 0;
 }
 
 .certifications__item--left {
   justify-self: start;
+
   padding-right: 68px;
 }
 
 .certifications__item--right {
   justify-self: end;
+
   padding-left: 68px;
 }
 
-/* Marcador central */
+/* ========================================
+   MARCADOR CENTRAL
+======================================== */
 
 .certifications__marker {
   position: absolute;
@@ -234,15 +255,18 @@
     box-shadow 0.35s ease;
 }
 
-.certifications__item--left .certifications__marker {
+.certifications__item--left
+  .certifications__marker {
   right: -19px;
 }
 
-.certifications__item--right .certifications__marker {
+.certifications__item--right
+  .certifications__marker {
   left: -19px;
 }
 
-.certifications__item:hover .certifications__marker {
+.certifications__item:hover
+  .certifications__marker {
   transform: scale(1.08);
 
   box-shadow:
@@ -250,7 +274,9 @@
     0 0 26px rgba(53, 208, 197, 0.38);
 }
 
-/* Línea horizontal hacia la tarjeta */
+/* ========================================
+   LÍNEA HACIA LA TARJETA
+======================================== */
 
 .certifications__item::before {
   position: absolute;
@@ -290,6 +316,9 @@
 
 .certifications__card {
   position: relative;
+
+  width: 100%;
+  min-width: 0;
 
   padding: 28px;
 
@@ -331,8 +360,6 @@
     0 0 24px rgba(53, 208, 197, 0.055);
 }
 
-/* Línea superior */
-
 .certifications__card::before {
   position: absolute;
   top: 0;
@@ -350,8 +377,6 @@
     0 0 13px rgba(53, 208, 197, 0.24);
 }
 
-/* Brillo decorativo */
-
 .certifications__card::after {
   position: absolute;
   top: -90px;
@@ -366,11 +391,12 @@
   border-radius: 50%;
 
   filter: blur(20px);
+
   pointer-events: none;
 }
 
 /* ========================================
-   ENCABEZADO DE LA TARJETA
+   ENCABEZADO DE TARJETA
 ======================================== */
 
 .certifications__card-header {
@@ -387,9 +413,12 @@
 
 .certifications__card-heading {
   display: flex;
+  min-width: 0;
   align-items: flex-start;
   gap: 15px;
+}
 
+.certifications__card-heading > div {
   min-width: 0;
 }
 
@@ -414,7 +443,8 @@
     filter 0.35s ease;
 }
 
-.certifications__card:hover .certifications__card-icon {
+.certifications__card:hover
+  .certifications__card-icon {
   color: var(--secondary);
 
   transform:
@@ -447,10 +477,14 @@
   font-weight: 750;
   line-height: 1.38;
   letter-spacing: -0.018em;
+
+  overflow-wrap: anywhere;
 }
 
 .certifications__category {
   flex-shrink: 0;
+
+  max-width: 100%;
 
   padding: 6px 10px;
 
@@ -458,6 +492,8 @@
   font-size: 0.65rem;
   font-weight: 800;
   letter-spacing: 0.055em;
+  line-height: 1.4;
+  text-align: center;
   text-transform: uppercase;
 
   background: rgba(53, 208, 197, 0.07);
@@ -504,10 +540,12 @@
   color: var(--text-secondary);
   font-size: 0.89rem;
   line-height: 1.68;
+
+  overflow-wrap: anywhere;
 }
 
 /* ========================================
-   BOTÓN DE CREDENCIAL
+   BOTÓN CREDENCIAL
 ======================================== */
 
 .certifications__credential-button {
@@ -560,8 +598,7 @@
 }
 
 .certifications__credential-button:hover svg {
-  transform:
-    translate(2px, -2px);
+  transform: translate(2px, -2px);
 }
 
 .certifications__credential-button:focus-visible {
@@ -600,7 +637,12 @@
 
   .certifications__item {
     width: 100%;
-    padding: 0 0 0 78px;
+
+    padding:
+      0
+      0
+      0
+      78px;
   }
 
   .certifications__item--left,
@@ -608,8 +650,10 @@
     justify-self: stretch;
   }
 
-  .certifications__item--left .certifications__marker,
-  .certifications__item--right .certifications__marker {
+  .certifications__item--left
+    .certifications__marker,
+  .certifications__item--right
+    .certifications__marker {
     right: auto;
     left: 2px;
   }
@@ -636,27 +680,31 @@
 
 @media (max-width: 600px) {
   .certifications {
-    padding: 105px 18px 155px;
-    scroll-margin-top: 64px;
+    padding: 82px 10px 110px;
   }
 
   .certifications::after {
-    height: 82px;
+    height: 62px;
 
-    clip-path: polygon(
-      0 67%,
-      100% 18%,
-      100% 100%,
-      0 100%
-    );
+    clip-path:
+      polygon(
+        0 67%,
+        100% 18%,
+        100% 100%,
+        0 100%
+      );
   }
 
   .certifications__heading {
-    margin-bottom: 58px;
+    margin-bottom: 50px;
+    padding: 0 8px;
   }
 
   .certifications__eyebrow {
-    font-size: 0.76rem;
+    gap: 8px;
+
+    font-size: 0.73rem;
+    letter-spacing: 0.16em;
   }
 
   .certifications__eyebrow::before,
@@ -665,23 +713,37 @@
   }
 
   .certifications__title {
-    font-size: 2.15rem;
+    font-size: 2.1rem;
+    line-height: 1.15;
   }
 
   .certifications__description {
-    font-size: 0.93rem;
+    font-size: 0.91rem;
+    line-height: 1.62;
+  }
+
+  .certifications__line {
+    width: 64px;
+    height: 3px;
+
+    margin-top: 17px;
   }
 
   .certifications__timeline {
-    padding-top: 10px;
+    padding-top: 8px;
   }
 
   .certifications__timeline-center {
     left: 17px;
   }
 
+  .certifications__item-reveal:not(:last-child) {
+    margin-bottom: 30px;
+  }
+
   .certifications__item {
-    margin-bottom: 42px;
+    width: 100%;
+    margin-bottom: 0;
     padding-left: 55px;
   }
 
@@ -693,6 +755,7 @@
     height: 34px;
 
     border-width: 5px;
+
     font-size: 0.72rem;
   }
 
@@ -705,23 +768,32 @@
   }
 
   .certifications__card {
-    padding: 23px 20px;
+    padding: 22px 19px;
+
     border-radius: 20px;
   }
 
   .certifications__card::before {
     left: 20px;
+
     width: 52px;
   }
 
   .certifications__card-header {
     flex-direction: column;
-    gap: 14px;
+    gap: 13px;
+
+    margin-bottom: 16px;
+  }
+
+  .certifications__card-heading {
+    gap: 12px;
   }
 
   .certifications__category {
     align-self: flex-start;
-    margin-left: 50px;
+
+    margin-left: 44px;
   }
 
   .certifications__card-icon {
@@ -730,16 +802,20 @@
   }
 
   .certifications__card h3 {
-    font-size: 1.06rem;
+    font-size: 1.04rem;
   }
 
   .certifications__metadata {
-    padding-left: 47px;
-    font-size: 0.76rem;
+    gap: 6px;
+
+    padding-left: 44px;
+
+    font-size: 0.75rem;
   }
 
   .certifications__card-description {
     font-size: 0.85rem;
+    line-height: 1.65;
   }
 
   .certifications__credential-button {
@@ -747,6 +823,51 @@
     justify-content: center;
 
     margin-top: 20px;
+  }
+}
+
+/* ========================================
+   TELÉFONOS MUY PEQUEÑOS
+======================================== */
+
+@media (max-width: 380px) {
+  .certifications {
+    padding-right: 7px;
+    padding-left: 7px;
+  }
+
+  .certifications__item {
+    padding-left: 49px;
+  }
+
+  .certifications__timeline-center {
+    left: 14px;
+  }
+
+  .certifications__marker {
+    left: -2px !important;
+
+    width: 32px;
+    height: 32px;
+  }
+
+  .certifications__item--left::before,
+  .certifications__item--right::before {
+    left: 29px;
+
+    width: 20px;
+  }
+
+  .certifications__card {
+    padding: 20px 16px;
+  }
+
+  .certifications__category {
+    margin-left: 0;
+  }
+
+  .certifications__metadata {
+    padding-left: 0;
   }
 }
 

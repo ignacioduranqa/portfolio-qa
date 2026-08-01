@@ -47,7 +47,16 @@ const learningIcons: Record<string, IconType> = {
 }
 
 function Skills() {
-  const [selectedTool, setSelectedTool] = useState<string | null>(null)
+  const [selectedTool, setSelectedTool] =
+    useState<string | null>(null)
+
+  const selectedToolData = tools.find(
+    (tool) => tool.id === selectedTool,
+  )
+
+  const SelectedToolIcon = selectedToolData
+    ? toolIcons[selectedToolData.id]
+    : null
 
   function handleToolClick(toolId: string) {
     setSelectedTool((currentTool) =>
@@ -56,7 +65,10 @@ function Skills() {
   }
 
   return (
-    <section className="skills" id="habilidades">
+    <section
+      className="skills"
+      id="habilidades"
+    >
       <div className="skills__heading">
         <span className="skills__eyebrow">
           Mi caja de herramientas
@@ -71,7 +83,10 @@ function Skills() {
           durante mi experiencia en calidad de software.
         </p>
 
-        <div className="skills__line" />
+        <div
+          className="skills__line"
+          aria-hidden="true"
+        />
       </div>
 
       <div className="skills__container">
@@ -83,89 +98,88 @@ function Skills() {
           <div className="skills__tool-grid">
             {tools.map((tool) => {
               const Icon = toolIcons[tool.id]
-              const isSelected = selectedTool === tool.id
+              const isSelected =
+                selectedTool === tool.id
 
               if (!Icon) {
                 return null
               }
 
               return (
-                <div
-                  className={`skills__tool-wrapper ${
+                <button
+                  className={`skills__tool ${
                     isSelected
-                      ? 'skills__tool-wrapper--active'
+                      ? 'skills__tool--active'
                       : ''
                   }`}
+                  type="button"
                   key={tool.id}
+                  onClick={() =>
+                    handleToolClick(tool.id)
+                  }
+                  aria-expanded={isSelected}
+                  aria-controls="selected-tool-detail"
                 >
-                  <button
-                    className={`skills__tool ${
-                      isSelected ? 'skills__tool--active' : ''
-                    }`}
-                    type="button"
-                    onClick={() => handleToolClick(tool.id)}
-                    aria-expanded={isSelected}
-                    aria-controls={`tool-detail-${tool.id}`}
-                  >
-                    <Icon
-                      className="skills__tool-icon"
+                  <Icon
+                    className="skills__tool-icon"
+                    aria-hidden="true"
+                  />
+
+                  <span className="skills__tool-name">
+                    {tool.name}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+
+          <div
+            className={`skills__selected-detail-wrapper ${
+              selectedToolData && SelectedToolIcon
+                ? 'skills__selected-detail-wrapper--open'
+                : ''
+            }`}
+            id="selected-tool-detail"
+            aria-hidden={!selectedToolData}
+          >
+            <div className="skills__selected-detail-inner">
+              {selectedToolData && SelectedToolIcon && (
+                <article className="skills__tool-detail">
+                  <div className="skills__tool-detail-heading">
+                    <SelectedToolIcon
+                      className="skills__tool-detail-icon"
                       aria-hidden="true"
                     />
 
-                    <span className="skills__tool-name">
-                      {tool.name}
-                    </span>
-                  </button>
+                    <div>
+                      <span className="skills__tool-detail-label">
+                        Uso profesional
+                      </span>
 
-                  <div
-                    className={`skills__tool-detail-wrapper ${
-                      isSelected
-                        ? 'skills__tool-detail-wrapper--open'
-                        : ''
-                    }`}
-                    id={`tool-detail-${tool.id}`}
-                    aria-hidden={!isSelected}
-                  >
-                    <div className="skills__tool-detail-content">
-                      <article className="skills__tool-detail">
-                        <span
-                          className="skills__tool-detail-arrow"
-                          aria-hidden="true"
-                        />
-
-                        <div className="skills__tool-detail-heading">
-                          <Icon
-                            className="skills__tool-detail-icon"
-                            aria-hidden="true"
-                          />
-
-                          <div>
-                            <span className="skills__tool-detail-label">
-                              Uso profesional
-                            </span>
-
-                            <h4>{tool.name}</h4>
-                          </div>
-                        </div>
-
-                        <p className="skills__tool-detail-description">
-                          {tool.description}
-                        </p>
-
-                        <ul className="skills__tool-detail-list">
-                          {tool.details.map((detail) => (
-                            <li key={detail}>
-                              <FaCheck aria-hidden="true" />
-                              <span>{detail}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </article>
+                      <h4>
+                        {selectedToolData.name}
+                      </h4>
                     </div>
                   </div>
-                </div>
-              )
-            })}
+
+                  <p className="skills__tool-detail-description">
+                    {selectedToolData.description}
+                  </p>
+
+                  <ul className="skills__tool-detail-list">
+                    {selectedToolData.details.map(
+                      (detail) => (
+                        <li key={detail}>
+                          <FaCheck aria-hidden="true" />
+
+                          <span>{detail}</span>
+                        </li>
+                      ),
+                    )}
+                  </ul>
+                </article>
+              )}
+            </div>
           </div>
         </div>
 

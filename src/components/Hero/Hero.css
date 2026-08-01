@@ -4,7 +4,7 @@
 
   display: grid;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100svh;
   grid-template-columns:
     minmax(0, 1.15fr)
     minmax(380px, 0.85fr);
@@ -60,7 +60,7 @@
 }
 
 /* ========================================
-   CONTENIDO IZQUIERDO
+   CONTENIDO
 ======================================== */
 
 .hero__content {
@@ -160,13 +160,13 @@
   display: inline-flex;
   min-width: 150px;
   min-height: 56px;
-
   align-items: center;
   justify-content: center;
 
   padding: 0 28px;
 
   font-weight: 700;
+  text-align: center;
   text-decoration: none;
 
   border: 1px solid transparent;
@@ -240,7 +240,7 @@
 }
 
 /* ========================================
-   BLOQUE VISUAL DERECHO
+   BLOQUE VISUAL
 ======================================== */
 
 .hero__visual {
@@ -298,7 +298,7 @@
 }
 
 /* ========================================
-   TARJETA VISUAL
+   TARJETA QA
 ======================================== */
 
 .hero__card {
@@ -331,7 +331,11 @@
 
   transform: rotate(3deg);
 
-  animation: hero-card-float 5s ease-in-out infinite;
+  animation:
+    hero-card-float
+    5s
+    ease-in-out
+    infinite;
 }
 
 .hero__card::before {
@@ -444,6 +448,7 @@
   font-size: 0.84rem;
   font-weight: 600;
   letter-spacing: 0.28em;
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -550,12 +555,13 @@
 
   background: var(--bg-section);
 
-  clip-path: polygon(
-    0 65%,
-    100% 10%,
-    100% 100%,
-    0 100%
-  );
+  clip-path:
+    polygon(
+      0 65%,
+      100% 10%,
+      100% 100%,
+      0 100%
+    );
 
   pointer-events: none;
 }
@@ -633,14 +639,14 @@
 }
 
 /* ========================================
-   PANTALLAS MEDIANAS
+   ESCRITORIO MEDIANO
 ======================================== */
 
 @media (max-width: 1100px) {
   .hero {
     grid-template-columns:
       minmax(0, 1fr)
-      minmax(340px, 0.85fr);
+      minmax(330px, 0.85fr);
 
     gap: 25px;
 
@@ -680,23 +686,23 @@
 }
 
 /* ========================================
-   TABLET VERTICAL
+   TABLET
 ======================================== */
 
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
-    gap: 35px;
+    gap: 28px;
 
     min-height: auto;
 
-    padding: 135px 24px 125px;
+    padding: 115px 28px 88px;
 
     text-align: center;
   }
 
   .hero__content {
-    max-width: 760px;
+    max-width: 700px;
     margin: 0 auto;
   }
 
@@ -708,52 +714,74 @@
   .hero__title {
     align-items: center;
 
-    font-size: clamp(4rem, 12vw, 6.3rem);
+    font-size: clamp(4rem, 12vw, 6rem);
     line-height: 0.92;
   }
 
-  .hero__title span {
-    margin-top: 8px;
-  }
-
   .hero__role {
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-size: clamp(1.6rem, 4vw, 2.1rem);
   }
 
   .hero__description {
+    max-width: 620px;
     margin-right: auto;
     margin-left: auto;
   }
 
   .hero__visual {
-    min-height: 480px;
+    min-height: 430px;
 
     transform: none;
   }
 
+  .hero__card {
+    width: min(100%, 390px);
+    min-height: 330px;
+  }
+
+  .hero__card-label {
+    font-size: 6rem;
+  }
+
+  .hero__orbit--one {
+    width: 420px;
+    height: 420px;
+  }
+
+  .hero__orbit--two {
+    width: 345px;
+    height: 345px;
+  }
+
+  .hero__glow {
+    width: 390px;
+    height: 390px;
+  }
+
   .hero__badge--testing {
-    left: 4%;
+    left: 6%;
   }
 
   .hero__badge--quality {
-    right: 4%;
+    right: 6%;
   }
 
   .hero::after {
-    height: 75px;
+    height: 70px;
 
-    clip-path: polygon(
-      0 55%,
-      100% 20%,
-      100% 100%,
-      0 100%
-    );
+    clip-path:
+      polygon(
+        0 55%,
+        100% 20%,
+        100% 100%,
+        0 100%
+      );
   }
 
   .hero::before {
-    bottom: 13px;
+    bottom: 12px;
 
-    height: 70px;
+    height: 65px;
   }
 }
 
@@ -763,86 +791,119 @@
 
 @media (max-width: 560px) {
   .hero {
+    gap: 30px;
+
     padding:
-      115px
-      18px
-      105px;
+      96px
+      16px
+      68px;
   }
 
   .hero__eyebrow {
     gap: 9px;
 
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 
-    font-size: 0.82rem;
+    font-size: 0.8rem;
   }
 
   .hero__eyebrow span {
-    width: 26px;
+    width: 25px;
   }
 
   .hero__title {
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 
-    font-size: clamp(3.25rem, 17vw, 4.7rem);
-    line-height: 0.94;
-    letter-spacing: -0.052em;
+    font-size: clamp(3.15rem, 16vw, 4.25rem);
+    line-height: 0.92;
+    letter-spacing: -0.05em;
   }
 
   .hero__title span {
-    margin-top: 5px;
+    margin-top: 4px;
   }
 
   .hero__role {
-    margin-bottom: 22px;
+    margin-bottom: 19px;
 
-    font-size: clamp(1.4rem, 7vw, 1.85rem);
+    font-size: clamp(1.35rem, 6.5vw, 1.7rem);
   }
 
   .hero__description {
-    margin-bottom: 29px;
+    max-width: 355px;
+    margin-bottom: 26px;
 
-    font-size: 0.95rem;
-    line-height: 1.7;
+    font-size: 0.94rem;
+    line-height: 1.65;
   }
 
   .hero__actions {
+    width: 100%;
+    gap: 12px;
+
     flex-direction: column;
   }
 
   .hero__button {
     width: 100%;
-    min-height: 52px;
+    min-height: 50px;
+
+    padding: 0 20px;
+
+    border-radius: 10px;
   }
 
   .hero__visual {
-    min-height: 400px;
+    min-height: 330px;
   }
 
   .hero__card {
-    width: min(90%, 350px);
-    min-height: 310px;
+    width: min(88%, 315px);
+    min-height: 270px;
 
-    border-radius: 25px;
+    border-radius: 23px;
+  }
+
+  .hero__card-header {
+    padding: 17px 19px;
+  }
+
+  .hero__card-content {
+    padding: 22px;
   }
 
   .hero__card-label {
-    font-size: 5.2rem;
+    font-size: 4.6rem;
+  }
+
+  .hero__card-content > p {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+  }
+
+  .hero__card-line {
+    width: 120px;
+
+    margin: 20px 0 15px;
+  }
+
+  .hero__card-status {
+    font-size: 0.76rem;
   }
 
   .hero__orbit--one {
-    width: 350px;
-    height: 350px;
+    width: 310px;
+    height: 310px;
   }
 
   .hero__orbit--two {
-    width: 290px;
-    height: 290px;
+    width: 255px;
+    height: 255px;
   }
 
   .hero__glow {
-    width: 340px;
-    height: 340px;
+    width: 290px;
+    height: 290px;
   }
 
   .hero__badge {
@@ -850,39 +911,63 @@
   }
 
   .hero::after {
-    height: 60px;
+    height: 48px;
+
+    clip-path:
+      polygon(
+        0 58%,
+        100% 24%,
+        100% 100%,
+        0 100%
+      );
   }
 
   .hero::before {
-    height: 55px;
+    bottom: 8px;
+
+    height: 43px;
   }
 }
 
 /* ========================================
-   PANTALLAS MUY PEQUEÑAS
+   TELÉFONOS MUY PEQUEÑOS
 ======================================== */
 
 @media (max-width: 380px) {
+  .hero {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
   .hero__title {
-    font-size: 3.15rem;
+    font-size: 3rem;
   }
 
   .hero__role {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
+  }
+
+  .hero__description {
+    font-size: 0.9rem;
   }
 
   .hero__card {
-    width: 94%;
+    width: min(88%, 290px);
+    min-height: 250px;
+  }
+
+  .hero__card-label {
+    font-size: 4.15rem;
   }
 
   .hero__orbit--one {
-    width: 320px;
-    height: 320px;
+    width: 285px;
+    height: 285px;
   }
 
   .hero__orbit--two {
-    width: 265px;
-    height: 265px;
+    width: 235px;
+    height: 235px;
   }
 }
 

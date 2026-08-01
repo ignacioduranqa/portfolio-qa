@@ -2,8 +2,7 @@
   position: relative;
   z-index: 1;
 
-  padding: 120px 64px 180px;
-  scroll-margin-top: 70px;
+  padding: 115px 64px 165px;
 
   background:
     radial-gradient(
@@ -16,7 +15,9 @@
   overflow: hidden;
 }
 
-/* RESPLANDOR DECORATIVO */
+/* ========================================
+   RESPLANDOR DECORATIVO
+======================================== */
 
 .experience::before {
   position: absolute;
@@ -32,10 +33,13 @@
   border-radius: 50%;
 
   filter: blur(105px);
+
   pointer-events: none;
 }
 
-/* CORTE HACIA HABILIDADES */
+/* ========================================
+   CORTE HACIA HABILIDADES
+======================================== */
 
 .experience::after {
   position: absolute;
@@ -45,29 +49,32 @@
   z-index: 5;
 
   width: 100%;
-  height: 115px;
+  height: 105px;
 
   content: '';
 
   background: var(--bg-section);
 
-  clip-path: polygon(
-    0 68%,
-    100% 10%,
-    100% 100%,
-    0 100%
-  );
+  clip-path:
+    polygon(
+      0 68%,
+      100% 10%,
+      100% 100%,
+      0 100%
+    );
 
   pointer-events: none;
 }
 
-/* ENCABEZADO */
+/* ========================================
+   ENCABEZADO
+======================================== */
 
 .experience__heading {
   position: relative;
   z-index: 2;
 
-  margin-bottom: 64px;
+  margin-bottom: 58px;
 
   text-align: center;
 }
@@ -114,16 +121,21 @@
   background: var(--gradient-primary);
   border-radius: var(--radius-round);
 
-  box-shadow: 0 0 16px rgba(53, 208, 197, 0.22);
+  box-shadow:
+    0 0 16px rgba(53, 208, 197, 0.22);
 }
 
-/* TIMELINE */
+/* ========================================
+   LÍNEA DE TIEMPO
+======================================== */
 
 .experience__timeline {
   position: relative;
   z-index: 2;
 
+  width: 100%;
   max-width: 1080px;
+
   margin: 0 auto;
 }
 
@@ -137,24 +149,22 @@
 
   content: '';
 
-  background: linear-gradient(
-    to bottom,
-    var(--primary),
-    var(--primary-light)
-  );
+  background:
+    linear-gradient(
+      to bottom,
+      var(--primary),
+      var(--primary-light)
+    );
 
-  box-shadow: 0 0 14px rgba(53, 208, 197, 0.22);
+  box-shadow:
+    0 0 14px rgba(53, 208, 197, 0.22);
 }
 
 .experience__card {
   position: relative;
 
-  margin-bottom: 44px;
+  width: 100%;
   padding-left: 72px;
-}
-
-.experience__card:last-child {
-  margin-bottom: 0;
 }
 
 .experience__marker {
@@ -174,10 +184,15 @@
     0 0 22px rgba(53, 208, 197, 0.38);
 }
 
-/* TARJETA PRINCIPAL */
+/* ========================================
+   TARJETA PRINCIPAL
+======================================== */
 
 .experience__card-content {
   position: relative;
+
+  width: 100%;
+  min-width: 0;
 
   padding: 30px;
 
@@ -192,7 +207,8 @@
   border-radius: 22px;
 
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.025),
     0 18px 44px rgba(0, 0, 0, 0.18);
 
   overflow: hidden;
@@ -228,11 +244,15 @@
     0 0 28px rgba(53, 208, 197, 0.06);
 }
 
-/* FECHA Y TEXTO */
+/* ========================================
+   FECHA Y TEXTOS
+======================================== */
 
 .experience__period {
   display: inline-flex;
   align-items: center;
+
+  max-width: 100%;
 
   margin-bottom: 14px;
   padding: 7px 12px;
@@ -253,6 +273,7 @@
   font-size: clamp(1.55rem, 2.3vw, 1.9rem);
   font-weight: 800;
   letter-spacing: -0.025em;
+  overflow-wrap: anywhere;
 }
 
 .experience__card-content h4 {
@@ -261,6 +282,7 @@
   color: var(--primary);
   font-size: 1.06rem;
   font-weight: 700;
+  line-height: 1.45;
 }
 
 .experience__card-content > p {
@@ -269,9 +291,13 @@
   color: var(--text-secondary);
   font-size: 0.98rem;
   line-height: 1.75;
+
+  overflow-wrap: anywhere;
 }
 
-/* LISTA DE LOGROS */
+/* ========================================
+   LISTA DE FUNCIONES
+======================================== */
 
 .experience__highlights {
   display: grid;
@@ -282,16 +308,22 @@
 }
 
 .experience__highlights li {
+  padding-left: 2px;
+
   color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.6;
+
+  overflow-wrap: anywhere;
 }
 
 .experience__highlights li::marker {
   color: var(--primary);
 }
 
-/* CLIENTE */
+/* ========================================
+   CLIENTE
+======================================== */
 
 .experience__client {
   display: flex;
@@ -325,9 +357,13 @@
   font-size: 1.05rem;
 }
 
-/* PROYECTOS */
+/* ========================================
+   PROYECTOS
+======================================== */
 
 .experience__projects {
+  min-width: 0;
+
   margin-top: 28px;
 }
 
@@ -337,6 +373,7 @@
   color: var(--text-primary);
   font-size: 1.08rem;
   font-weight: 750;
+  line-height: 1.4;
 }
 
 .experience__project-list {
@@ -345,11 +382,15 @@
 }
 
 .experience__project {
-  overflow: hidden;
+  width: 100%;
+  min-width: 0;
 
   background: rgba(8, 22, 31, 0.44);
+
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-md);
+
+  overflow: hidden;
 
   transition:
     transform var(--transition-fast),
@@ -358,13 +399,17 @@
     box-shadow var(--transition-fast);
 }
 
-.experience__project:hover {
-  transform: translateY(-2px);
-
+.experience__project:hover,
+.experience__project--open {
   background: rgba(53, 208, 197, 0.035);
   border-color: var(--border-strong);
 
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.14);
+}
+
+.experience__project:hover {
+  transform: translateY(-2px);
 }
 
 .experience__project--featured {
@@ -378,12 +423,17 @@
   border-color: rgba(53, 208, 197, 0.34);
 }
 
+/* ========================================
+   BOTÓN DEL PROYECTO
+======================================== */
+
 .experience__project-button {
   display: flex;
   width: 100%;
+  min-width: 0;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 20px;
 
   padding: 19px 20px;
 
@@ -395,6 +445,12 @@
   border: none;
 
   cursor: pointer;
+}
+
+.experience__project-button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: -4px;
+  border-radius: var(--radius-md);
 }
 
 .experience__project-main {
@@ -443,6 +499,9 @@
   color: var(--text-primary);
   font-size: 1rem;
   font-weight: 700;
+  line-height: 1.4;
+
+  overflow-wrap: anywhere;
 }
 
 .experience__project-arrow {
@@ -452,11 +511,13 @@
   font-size: 0.82rem;
 
   transition:
-    transform var(--transition-fast),
+    transform 0.4s
+      cubic-bezier(0.22, 1, 0.36, 1),
     color var(--transition-fast);
 }
 
-.experience__project:hover .experience__project-arrow {
+.experience__project:hover
+  .experience__project-arrow {
   color: var(--primary-light);
 }
 
@@ -464,10 +525,46 @@
   transform: rotate(180deg);
 }
 
-.experience__project-details {
-  padding: 0 20px 20px;
+/* ========================================
+   ACORDEÓN
+======================================== */
 
-  animation: experience-project-open 0.25s ease;
+.experience__project-details-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    grid-template-rows 0.65s
+      cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s ease,
+    visibility 0.65s ease;
+}
+
+.experience__project-details-wrapper--open {
+  grid-template-rows: 1fr;
+
+  opacity: 1;
+  visibility: visible;
+}
+
+.experience__project-details {
+  min-height: 0;
+
+  padding: 0 20px;
+
+  overflow: hidden;
+
+  transition:
+    padding-bottom 0.65s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.experience__project-details-wrapper--open
+  .experience__project-details {
+  padding-bottom: 20px;
 }
 
 .experience__project-details p {
@@ -479,6 +576,8 @@
   line-height: 1.68;
 
   border-top: 1px solid var(--border-soft);
+
+  overflow-wrap: anywhere;
 }
 
 .experience__project-responsibilities {
@@ -490,140 +589,22 @@
 }
 
 .experience__project-responsibilities li {
+  padding-left: 2px;
+
   color: var(--text-secondary);
   font-size: 0.92rem;
   line-height: 1.58;
+
+  overflow-wrap: anywhere;
 }
 
 .experience__project-responsibilities li::marker {
   color: var(--primary);
 }
 
-/* ANIMACIÓN DEL ACORDEÓN */
-
-@keyframes experience-project-open {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* PANTALLAS GRANDES */
-
-@media (min-width: 1700px) {
-  .experience {
-    padding-right: 90px;
-    padding-left: 90px;
-  }
-
-  .experience__timeline {
-    max-width: 1160px;
-  }
-}
-
-/* TABLET */
-
-@media (max-width: 900px) {
-  .experience {
-    padding: 110px 40px 165px;
-  }
-
-  .experience__heading {
-    margin-bottom: 54px;
-  }
-}
-
-/* TELÉFONOS */
-
-@media (max-width: 650px) {
-  .experience {
-    padding: 100px 18px 145px;
-    scroll-margin-top: 64px;
-  }
-
-  .experience::after {
-    height: 82px;
-
-    clip-path: polygon(
-      0 62%,
-      100% 18%,
-      100% 100%,
-      0 100%
-    );
-  }
-
-  .experience__heading {
-    margin-bottom: 44px;
-  }
-
-  .experience__eyebrow {
-    font-size: 0.78rem;
-  }
-
-  .experience__eyebrow::before,
-  .experience__eyebrow::after {
-    width: 16px;
-  }
-
-  .experience__title {
-    font-size: 2.2rem;
-  }
-
-  .experience__timeline::before {
-    left: 12px;
-  }
-
-  .experience__card {
-    margin-bottom: 34px;
-    padding-left: 46px;
-  }
-
-  .experience__marker {
-    top: 20px;
-    left: 0;
-
-    width: 25px;
-    height: 25px;
-  }
-
-  .experience__card-content {
-    padding: 22px 19px;
-  }
-
-  .experience__card-content h3 {
-    font-size: 1.5rem;
-  }
-
-  .experience__card-content h4 {
-    font-size: 1rem;
-  }
-
-  .experience__card-content > p,
-  .experience__highlights li {
-    font-size: 0.93rem;
-  }
-
-  .experience__project-button {
-    align-items: flex-start;
-
-    padding: 17px;
-  }
-
-  .experience__project-details {
-    padding: 0 17px 17px;
-  }
-
-  .experience__project-labels {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-}
-/* SOPORTE PARA REVEAL */
+/* ========================================
+   SOPORTE PARA REVEAL
+======================================== */
 
 .experience__card-reveal {
   width: 100%;
@@ -637,8 +618,315 @@
   margin-bottom: 0;
 }
 
+/* ========================================
+   PANTALLAS GRANDES
+======================================== */
+
+@media (min-width: 1700px) {
+  .experience {
+    padding-right: 90px;
+    padding-left: 90px;
+  }
+
+  .experience__timeline {
+    max-width: 1160px;
+  }
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+  .experience {
+    padding: 100px 32px 145px;
+  }
+
+  .experience__heading {
+    margin-bottom: 50px;
+  }
+
+  .experience__card {
+    padding-left: 58px;
+  }
+
+  .experience__timeline::before {
+    left: 15px;
+  }
+
+  .experience__marker {
+    left: 3px;
+  }
+
+  .experience__card-content {
+    padding: 26px;
+  }
+}
+
+/* ========================================
+   TELÉFONOS
+======================================== */
+
 @media (max-width: 650px) {
+  .experience {
+    padding: 82px 10px 105px;
+  }
+
+  .experience::after {
+    height: 62px;
+
+    clip-path:
+      polygon(
+        0 62%,
+        100% 18%,
+        100% 100%,
+        0 100%
+      );
+  }
+
+  .experience__heading {
+    margin-bottom: 38px;
+    padding: 0 8px;
+  }
+
+  .experience__eyebrow {
+    gap: 8px;
+
+    font-size: 0.75rem;
+    letter-spacing: 0.17em;
+  }
+
+  .experience__eyebrow::before,
+  .experience__eyebrow::after {
+    width: 17px;
+  }
+
+  .experience__title {
+    font-size: 2.15rem;
+  }
+
+  .experience__line {
+    width: 65px;
+    height: 3px;
+
+    margin-top: 15px;
+  }
+
+  .experience__timeline::before {
+    left: 11px;
+  }
+
+  .experience__card {
+    padding-left: 34px;
+  }
+
+  .experience__marker {
+    top: 22px;
+    left: 0;
+
+    width: 23px;
+    height: 23px;
+
+    border-width: 5px;
+  }
+
+  .experience__card-content {
+    padding: 21px 16px 22px;
+
+    border-radius: 18px;
+  }
+
+  .experience__card-content::before {
+    width: 3px;
+  }
+
+  .experience__period {
+    margin-bottom: 13px;
+    padding: 6px 10px;
+
+    font-size: 0.76rem;
+    line-height: 1.35;
+  }
+
+  .experience__card-content h3 {
+    font-size: 1.42rem;
+  }
+
+  .experience__card-content h4 {
+    margin-bottom: 15px;
+
+    font-size: 0.96rem;
+    line-height: 1.45;
+  }
+
+  .experience__card-content > p {
+    font-size: 0.9rem;
+    line-height: 1.68;
+  }
+
+  .experience__highlights {
+    gap: 9px;
+
+    margin-top: 19px;
+    padding-left: 19px;
+  }
+
+  .experience__highlights li {
+    font-size: 0.89rem;
+    line-height: 1.55;
+  }
+
+  .experience__client {
+    margin-top: 20px;
+    padding: 14px 15px;
+
+    border-radius: 14px;
+  }
+
+  .experience__projects {
+    margin-top: 23px;
+  }
+
+  .experience__projects h5 {
+    margin-bottom: 14px;
+
+    font-size: 1rem;
+  }
+
+  .experience__project-list {
+    gap: 11px;
+  }
+
+  .experience__project {
+    border-radius: 15px;
+  }
+
+  .experience__project-button {
+    align-items: flex-start;
+    gap: 12px;
+
+    padding: 15px 14px;
+  }
+
+  .experience__project-labels {
+    align-items: flex-start;
+    gap: 7px;
+
+    margin-bottom: 8px;
+  }
+
+  .experience__project-code,
+  .experience__project-featured {
+    padding: 5px 9px;
+
+    font-size: 0.7rem;
+  }
+
+  .experience__project h6 {
+    font-size: 0.94rem;
+  }
+
+  .experience__project-arrow {
+    margin-top: 6px;
+
+    font-size: 0.76rem;
+  }
+
+  .experience__project-details {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .experience__project-details-wrapper--open
+    .experience__project-details {
+    padding-bottom: 16px;
+  }
+
+  .experience__project-details p {
+    padding-top: 15px;
+
+    font-size: 0.87rem;
+    line-height: 1.65;
+  }
+
+  .experience__project-responsibilities {
+    gap: 8px;
+
+    margin-top: 14px;
+    padding-left: 18px;
+  }
+
+  .experience__project-responsibilities li {
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+
   .experience__card-reveal:not(:last-child) {
-    margin-bottom: 34px;
+    margin-bottom: 30px;
+  }
+}
+
+/* ========================================
+   TELÉFONOS MUY PEQUEÑOS
+======================================== */
+
+@media (max-width: 380px) {
+  .experience {
+    padding-right: 7px;
+    padding-left: 7px;
+  }
+
+  .experience__timeline::before {
+    left: 9px;
+  }
+
+  .experience__card {
+    padding-left: 29px;
+  }
+
+  .experience__marker {
+    left: -1px;
+
+    width: 21px;
+    height: 21px;
+  }
+
+  .experience__card-content {
+    padding: 19px 13px 20px;
+  }
+
+  .experience__period {
+    font-size: 0.71rem;
+  }
+
+  .experience__card-content h3 {
+    font-size: 1.33rem;
+  }
+
+  .experience__card-content h4 {
+    font-size: 0.92rem;
+  }
+
+  .experience__project-button {
+    padding: 14px 12px;
+  }
+
+  .experience__project-details {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+}
+
+/* ========================================
+   MOVIMIENTO REDUCIDO
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .experience__card-content,
+  .experience__project,
+  .experience__project-arrow,
+  .experience__project-details-wrapper,
+  .experience__project-details {
+    transition: none;
   }
 }
