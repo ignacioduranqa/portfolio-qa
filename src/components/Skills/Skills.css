@@ -137,7 +137,7 @@
 }
 
 /* ========================================
-   CONTENEDOR
+   CONTENEDOR GENERAL
 ======================================== */
 
 .skills__container {
@@ -155,7 +155,7 @@
 }
 
 .skills__section:first-child {
-  padding-bottom: 95px;
+  padding-bottom: 82px;
 }
 
 .skills__section:nth-child(2) {
@@ -193,14 +193,43 @@
 }
 
 /* ========================================
-   HERRAMIENTAS
+   ÁREA DE HERRAMIENTAS
 ======================================== */
+
+.skills__tool-area {
+  position: relative;
+
+  padding-bottom: 0;
+
+  transition:
+    padding-bottom 0.6s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/*
+ * Reserva el espacio necesario para que
+ * la ficha flotante no cubra la sección siguiente.
+ */
+
+.skills__tool-area--open {
+  padding-bottom: 300px;
+}
 
 .skills__tool-grid {
   display: grid;
   grid-template-columns:
     repeat(6, minmax(100px, 1fr));
   gap: 30px 22px;
+}
+
+.skills__tool-wrapper {
+  position: relative;
+
+  min-width: 0;
+}
+
+.skills__tool-wrapper--active {
+  z-index: 20;
 }
 
 .skills__tool {
@@ -283,48 +312,128 @@
 }
 
 /* ========================================
-   FICHA SELECCIONADA
+   FICHA DE ESCRITORIO
 ======================================== */
 
-.skills__selected-detail-wrapper {
-  display: grid;
+.skills__desktop-detail {
+  position: absolute;
+  top: calc(100% + 22px);
+  left: 50%;
+  z-index: 30;
+
+  display: none;
+  width: 340px;
+
+  opacity: 0;
+
+  transform:
+    translateX(-50%)
+    translateY(-12px);
+
+  pointer-events: none;
+}
+
+.skills__desktop-detail--open {
+  display: block;
+
+  opacity: 1;
+
+  transform:
+    translateX(-50%)
+    translateY(0);
+
+  pointer-events: auto;
+
+  animation:
+    skills-detail-desktop-enter
+    0.55s
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Primera herramienta: evita salir por la izquierda */
+
+.skills__tool-wrapper:first-child
+  .skills__desktop-detail {
+  left: 0;
+
+  transform:
+    translateX(0)
+    translateY(-12px);
+}
+
+.skills__tool-wrapper:first-child
+  .skills__desktop-detail--open {
+  transform:
+    translateX(0)
+    translateY(0);
+}
+
+/* Última herramienta: evita salir por la derecha */
+
+.skills__tool-wrapper:last-child
+  .skills__desktop-detail {
+  right: 0;
+  left: auto;
+
+  transform:
+    translateX(0)
+    translateY(-12px);
+}
+
+.skills__tool-wrapper:last-child
+  .skills__desktop-detail--open {
+  transform:
+    translateX(0)
+    translateY(0);
+}
+
+/* ========================================
+   FICHA COMPARTIDA MÓVIL
+======================================== */
+
+.skills__mobile-detail {
+  display: none;
   grid-template-rows: 0fr;
 
-  max-width: 760px;
+  width: 100%;
   margin: 0 auto;
 
   opacity: 0;
   visibility: hidden;
 
   transition:
-    grid-template-rows 0.75s
+    grid-template-rows 0.65s
       cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.45s ease,
-    visibility 0.75s ease,
-    margin-top 0.75s
+    opacity 0.4s ease,
+    visibility 0.65s ease,
+    margin-top 0.65s
       cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.skills__selected-detail-wrapper--open {
+.skills__mobile-detail--open {
   grid-template-rows: 1fr;
 
-  margin-top: 38px;
+  margin-top: 28px;
 
   opacity: 1;
   visibility: visible;
 }
 
-.skills__selected-detail-inner {
+.skills__mobile-detail-inner {
   min-height: 0;
 
   overflow: hidden;
 }
 
+/* ========================================
+   DISEÑO DE LA FICHA
+======================================== */
+
 .skills__tool-detail {
   position: relative;
 
   width: 100%;
-  padding: 26px;
+  padding: 22px;
 
   background:
     radial-gradient(
@@ -342,23 +451,37 @@
   border-radius: 20px;
 
   box-shadow:
-    0 24px 55px rgba(0, 0, 0, 0.3),
-    0 0 24px rgba(53, 208, 197, 0.08);
+    0 20px 46px rgba(0, 0, 0, 0.29),
+    0 0 22px rgba(53, 208, 197, 0.07);
 
   overflow: hidden;
+}
 
-  animation:
-    skills-detail-enter
-    0.65s
-    cubic-bezier(0.22, 1, 0.36, 1);
+.skills__tool-detail::before {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+
+  width: 18px;
+  height: 18px;
+
+  content: '';
+
+  background: #112936;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+
+  transform:
+    translateX(-50%)
+    rotate(45deg);
 }
 
 .skills__tool-detail::after {
   position: absolute;
   top: 0;
-  left: 25px;
+  left: 22px;
 
-  width: 56px;
+  width: 54px;
   height: 3px;
 
   content: '';
@@ -370,16 +493,16 @@
 .skills__tool-detail-heading {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 13px;
 
-  margin-bottom: 17px;
+  margin-bottom: 15px;
 }
 
 .skills__tool-detail-icon {
   flex-shrink: 0;
 
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
 
   color: var(--primary-light);
 
@@ -395,7 +518,7 @@
   margin-bottom: 3px;
 
   color: var(--primary);
-  font-size: 0.65rem;
+  font-size: 0.64rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -405,22 +528,22 @@
   margin: 0;
 
   color: var(--text-primary);
-  font-size: 1.2rem;
+  font-size: 1.14rem;
 }
 
 .skills__tool-detail-description {
-  margin: 0 0 18px;
+  margin: 0 0 16px;
 
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  line-height: 1.65;
+  font-size: 0.87rem;
+  line-height: 1.6;
 
   overflow-wrap: anywhere;
 }
 
 .skills__tool-detail-list {
   display: grid;
-  gap: 11px;
+  gap: 9px;
 
   margin: 0;
   padding: 0;
@@ -431,11 +554,11 @@
 .skills__tool-detail-list li {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 9px;
 
   color: var(--text-secondary);
-  font-size: 0.86rem;
-  line-height: 1.55;
+  font-size: 0.83rem;
+  line-height: 1.5;
 
   overflow-wrap: anywhere;
 }
@@ -446,24 +569,16 @@
   margin-top: 4px;
 
   color: var(--primary-light);
-  font-size: 0.76rem;
+  font-size: 0.74rem;
 }
 
-@keyframes skills-detail-enter {
+@keyframes skills-detail-desktop-enter {
   from {
     opacity: 0;
-
-    transform:
-      translateY(-14px)
-      scale(0.98);
   }
 
   to {
     opacity: 1;
-
-    transform:
-      translateY(0)
-      scale(1);
   }
 }
 
@@ -480,12 +595,12 @@
 
 .skills__learning-item {
   display: flex;
+  min-width: 0;
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
   gap: 10px;
 
-  min-width: 0;
   padding: 12px 8px;
 
   transition:
@@ -570,7 +685,8 @@
   border-radius: 26px;
 
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.02),
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.02),
     0 18px 44px rgba(0, 0, 0, 0.15);
 }
 
@@ -722,10 +838,47 @@
     grid-template-columns:
       repeat(3, minmax(0, 1fr));
   }
+
+  .skills__tool-area--open {
+    padding-bottom: 300px;
+  }
+
+  .skills__tool-wrapper:nth-child(3n + 1)
+    .skills__desktop-detail {
+    left: 0;
+
+    transform:
+      translateX(0)
+      translateY(-12px);
+  }
+
+  .skills__tool-wrapper:nth-child(3n + 1)
+    .skills__desktop-detail--open {
+    transform:
+      translateX(0)
+      translateY(0);
+  }
+
+  .skills__tool-wrapper:nth-child(3n)
+    .skills__desktop-detail {
+    right: 0;
+    left: auto;
+
+    transform:
+      translateX(0)
+      translateY(-12px);
+  }
+
+  .skills__tool-wrapper:nth-child(3n)
+    .skills__desktop-detail--open {
+    transform:
+      translateX(0)
+      translateY(0);
+  }
 }
 
 /* ========================================
-   TABLET
+   TABLET Y MÓVIL
 ======================================== */
 
 @media (max-width: 850px) {
@@ -735,6 +888,28 @@
 
   .skills__heading {
     margin-bottom: 52px;
+  }
+
+  /*
+   * En tablet se ocultan las fichas flotantes
+   * y se utiliza la ficha compartida.
+   */
+
+  .skills__desktop-detail {
+    display: none !important;
+  }
+
+  .skills__tool-area,
+  .skills__tool-area--open {
+    padding-bottom: 0;
+  }
+
+  .skills__mobile-detail {
+    display: grid;
+  }
+
+  .skills__tool-detail::before {
+    display: none;
   }
 
   .skills__knowledge-grid {
@@ -845,7 +1020,7 @@
     font-size: 0.86rem;
   }
 
-  .skills__selected-detail-wrapper--open {
+  .skills__mobile-detail--open {
     margin-top: 28px;
   }
 
@@ -950,9 +1125,11 @@
 ======================================== */
 
 @media (prefers-reduced-motion: reduce) {
+  .skills__tool-area,
   .skills__tool,
   .skills__tool-icon,
-  .skills__selected-detail-wrapper,
+  .skills__desktop-detail,
+  .skills__mobile-detail,
   .skills__tool-detail,
   .skills__learning-item,
   .skills__learning-icon,
