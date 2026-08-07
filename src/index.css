@@ -84,7 +84,7 @@ html {
    * Evita que el navbar tape el inicio
    * de las secciones al navegar.
    */
-  scroll-padding-top: 92px;
+  scroll-padding-top: 80px;
 }
 
 body {
