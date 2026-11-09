@@ -1060,3 +1060,16 @@
     transition: none;
   }
 }
+
+
+/* Agrandar únicamente el computador de QA Automation */
+
+@media (min-width: 1024px) {
+  .projects__visual--qa .projects__laptop {
+    width: 135%;
+    max-width: none;
+    flex-shrink: 0;
+    position: relative;
+    left: -55px;
+  }
+}
