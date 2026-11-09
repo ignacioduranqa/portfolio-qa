@@ -57,11 +57,11 @@ const projects = [
   {
     id: 'qa-automation',
     type: 'Proyecto QA Automation',
-    title: 'QA Automation | Selenium Java',
+    title: 'QA Automation',
     description:
-      'Proyecto de automatización de pruebas funcionales sobre Automation Exercise, desarrollado con Java, Selenium WebDriver, JUnit 5 y Maven, aplicando el patrón Page Object Model (POM).',
+      'Proyecto de automatización de pruebas funcionales sobre Automation Exercise, utilizando Java, Selenium WebDriver, JUnit 5 y Maven, con arquitectura Page Object Model (POM).',
     secondaryDescription:
-      'Incluye 15 pruebas automatizadas con cobertura de registro, autenticación, búsqueda, catálogo, carrito, checkout y compra end-to-end. La suite completa finalizó exitosamente sin fallos ni errores.',
+      'Suite de 15 pruebas automatizadas que cubren flujos de registro, autenticación, catálogo, carrito y compra end-to-end, ejecutadas exitosamente sin fallos ni errores.',
     image: qaAutomationImage,
     imageLabel: 'github.com/ignacioduranqa',
     status: '15 pruebas ejecutadas',
@@ -75,12 +75,12 @@ const projects = [
       { name: 'Maven', icon: SiApachemaven },
     ],
     features: [
-      '15 pruebas automatizadas ejecutadas exitosamente.',
+      '15 pruebas ejecutadas exitosamente.',
       'Arquitectura Page Object Model (POM).',
-      'Pruebas funcionales y escenarios end-to-end.',
-      'Selección dinámica de productos y datos de prueba.',
-      'Validación de precios, cantidades y totales.',
-      'Ejecución de pruebas mediante Maven y JUnit 5.',
+      'Pruebas funcionales y end-to-end.',
+      'Selección dinámica de productos.',
+      'Validación de precios y totales.',
+      'Ejecución con Maven y JUnit 5.',
     ],
   },
 ]
@@ -143,7 +143,10 @@ function Projects() {
 
                   <h3>{project.title}</h3>
 
-                  <div className="projects__title-line" />
+                  <div
+                    className="projects__title-line"
+                    aria-hidden="true"
+                  />
 
                   <p>{project.description}</p>
 
@@ -187,7 +190,7 @@ function Projects() {
                         className="projects__button projects__button--primary"
                         href={project.liveUrl}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                       >
                         <FaCalendarAlt aria-hidden="true" />
                         <span>Ver proyecto</span>
@@ -206,7 +209,7 @@ function Projects() {
                       }`}
                       href={project.githubUrl}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                     >
                       <FaGithub aria-hidden="true" />
                       <span>Ver repositorio</span>
