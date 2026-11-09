@@ -59,4 +59,16 @@ export const certifications: Certification[] = [
       'Certificación sobre el marco de trabajo Scrum, sus roles, eventos, artefactos y principios para la gestión ágil de proyectos.',
     credentialUrl: scrumCertificate,
   },
+    {
+    id: 'qa-automation',
+    title: 'Carrera QA Automation',
+    institution: 'Academia QA',
+    year: '2026',
+    date: '2026',
+    category: 'Automatización',
+    description:
+      'Formación de 70 horas de teoría y práctica sobre conceptos generales de automatización de pruebas de software y uso de herramientas de automatización.',
+    credentialUrl:
+      `${import.meta.env.BASE_URL}certificado-qa-automation.png`,
+  },
 ]

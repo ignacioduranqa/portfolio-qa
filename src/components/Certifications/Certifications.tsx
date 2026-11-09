@@ -1,3 +1,4 @@
+
 import {
   FaAward,
   FaExternalLinkAlt,
@@ -7,6 +8,7 @@ import {
 import Reveal from '../Reveal/Reveal'
 
 import './Certifications.css'
+
 import { certifications } from '../../data/certifications'
 
 function Certifications() {
@@ -30,9 +32,10 @@ function Certifications() {
           </h2>
 
           <p className="certifications__description">
-            Certificaciones que complementan mi experiencia profesional
-            y fortalecen mis conocimientos en QA, metodologías ágiles,
-            automatización y trabajo colaborativo.
+            Certificaciones que complementan mi experiencia
+            profesional y fortalecen mis conocimientos en QA,
+            metodologías ágiles, automatización y trabajo
+            colaborativo.
           </p>
 
           <div
@@ -87,7 +90,9 @@ function Certifications() {
                           {certification.year}
                         </span>
 
-                        <h3>{certification.title}</h3>
+                        <h3>
+                          {certification.title}
+                        </h3>
                       </div>
                     </div>
 
@@ -97,7 +102,9 @@ function Certifications() {
                   </div>
 
                   <div className="certifications__metadata">
-                    <span>{certification.institution}</span>
+                    <span>
+                      {certification.institution}
+                    </span>
 
                     <span
                       className="certifications__metadata-separator"
@@ -106,7 +113,9 @@ function Certifications() {
                       •
                     </span>
 
-                    <span>{certification.date}</span>
+                    <span>
+                      {certification.date}
+                    </span>
                   </div>
 
                   <p className="certifications__card-description">
@@ -118,12 +127,16 @@ function Certifications() {
                       className="certifications__credential-button"
                       href={certification.credentialUrl}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       aria-label={`Ver credencial de ${certification.title}`}
                     >
-                      <span>Ver credencial</span>
+                      <span>
+                        Ver credencial
+                      </span>
 
-                      <FaExternalLinkAlt aria-hidden="true" />
+                      <FaExternalLinkAlt
+                        aria-hidden="true"
+                      />
                     </a>
                   )}
                 </div>

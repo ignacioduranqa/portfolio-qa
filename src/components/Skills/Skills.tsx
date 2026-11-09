@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 
 import {
@@ -128,8 +129,9 @@ function Skills() {
         </h2>
 
         <p className="skills__description">
-          Herramientas, metodologías y tipos de pruebas que he utilizado
-          durante mi experiencia en calidad de software.
+          Herramientas, metodologías y tipos de pruebas
+          que he utilizado durante mi experiencia
+          y formación en calidad de software.
         </p>
 
         <div
@@ -139,6 +141,8 @@ function Skills() {
       </div>
 
       <div className="skills__container">
+        {/* HERRAMIENTAS */}
+
         <div className="skills__section">
           <div className="skills__section-heading">
             <h3>Herramientas</h3>
@@ -154,6 +158,7 @@ function Skills() {
             <div className="skills__tool-grid">
               {tools.map((tool) => {
                 const Icon = toolIcons[tool.id]
+
                 const isSelected =
                   selectedTool === tool.id
 
@@ -245,15 +250,12 @@ function Skills() {
           </div>
         </div>
 
-        <div className="skills__section">
-          <div className="skills__section-heading">
-            <h3>Actualmente aprendiendo</h3>
-          </div>
+        {/* HERRAMIENTAS DE AUTOMATIZACIÓN */}
 
+        <div className="skills__section">
           <div className="skills__learning-grid">
             {learningSkills.map((skill) => {
-              const Icon =
-                learningIcons[skill.id]
+              const Icon = learningIcons[skill.id]
 
               if (!Icon) {
                 return null
@@ -272,15 +274,13 @@ function Skills() {
                   <span className="skills__learning-name">
                     {skill.name}
                   </span>
-
-                  <span className="skills__learning-status">
-                    {skill.status}
-                  </span>
                 </article>
               )
             })}
           </div>
         </div>
+
+        {/* METODOLOGÍAS Y TIPOS DE PRUEBAS */}
 
         <div className="skills__knowledge-grid">
           <div className="skills__knowledge">
