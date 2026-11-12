@@ -918,3 +918,345 @@
     transition: none;
   }
 }
+
+/* ========================================
+   PLAYWRIGHT - TABLET INTERACTIVA
+======================================== */
+
+.projects__visual--tablet {
+  min-height: 430px;
+  flex-direction: column;
+}
+
+.projects__tablet-gallery {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 690px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+/* Estructura de la tablet */
+
+.projects__tablet {
+  position: relative;
+  width: 100%;
+  padding: 15px 19px;
+  border: 2px solid #40515e;
+  border-radius: 25px;
+
+  background: linear-gradient(
+    145deg,
+    #263a48,
+    #091620 65%,
+    #1c303d
+  );
+
+  box-shadow:
+    0 0 0 2px rgba(9, 19, 28, 0.85),
+    0 22px 50px rgba(0, 0, 0, 0.35),
+    inset 0 1px 2px rgba(210, 235, 240, 0.15);
+
+  overflow: hidden;
+}
+
+/* Cámara lateral */
+
+.projects__tablet-camera {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 7px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #35566a;
+  box-shadow: 0 0 0 2px #09151d;
+  transform: translateY(-50%);
+}
+
+/* Pantalla de la tablet */
+
+.projects__tablet-screen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid #31434e;
+  border-radius: 9px;
+  background: #101010;
+  overflow: hidden;
+}
+
+.projects__tablet-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* ========================================
+   CONTROLES DEL CARRUSEL
+======================================== */
+
+.projects__gallery-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+.projects__gallery-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 37px;
+  height: 37px;
+
+  border: 1px solid rgba(71, 207, 195, 0.25);
+  border-radius: 50%;
+
+  background: rgba(24, 65, 74, 0.65);
+  color: #8ce7cd;
+
+  font-size: 12px;
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.projects__gallery-arrow:hover {
+  transform: translateY(-2px);
+  background: rgba(48, 132, 128, 0.35);
+  border-color: rgba(94, 230, 197, 0.6);
+}
+
+.projects__gallery-arrow:focus-visible,
+.projects__gallery-dot:focus-visible {
+  outline: 2px solid #80e5c0;
+  outline-offset: 4px;
+}
+
+/* Indicadores */
+
+.projects__gallery-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+
+.projects__gallery-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 20px;
+  background: #526e76;
+  cursor: pointer;
+
+  transition:
+    width 0.25s ease,
+    background 0.25s ease;
+}
+
+.projects__gallery-dot--active {
+  width: 25px;
+  background: linear-gradient(
+    90deg,
+    #38d1c7,
+    #79e2b3
+  );
+}
+
+/* Contador de imágenes */
+
+.projects__gallery-counter {
+  color: #8ca8b2;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Etiqueta del tercer proyecto */
+
+.projects__visual--tablet .projects__floating-label {
+  right: 4%;
+  bottom: 20%;
+}
+
+/* ========================================
+   TABLET RESPONSIVE
+======================================== */
+
+@media (max-width: 1100px) {
+  .projects__visual--tablet {
+    min-height: 350px;
+  }
+
+  .projects__tablet {
+    padding: 11px 14px;
+    border-radius: 19px;
+  }
+
+  .projects__tablet-camera {
+    left: 4px;
+  }
+
+  .projects__visual--tablet .projects__floating-label {
+    bottom: 24%;
+  }
+}
+
+@media (max-width: 850px) {
+  .projects__visual--tablet {
+    min-height: 0;
+    padding: 25px 0 40px;
+  }
+
+  .projects__tablet-gallery {
+    max-width: 670px;
+  }
+
+  .projects__visual--tablet .projects__floating-label {
+    right: 6%;
+    bottom: 20%;
+  }
+}
+
+@media (max-width: 650px) {
+  .projects__visual--tablet {
+    padding: 18px 0 38px;
+  }
+
+  .projects__tablet-gallery {
+    gap: 17px;
+  }
+
+  .projects__tablet {
+    padding: 8px 11px;
+    border-radius: 14px;
+  }
+
+  .projects__tablet-camera {
+    width: 4px;
+    height: 4px;
+    left: 3px;
+  }
+
+  .projects__tablet-screen {
+    border-radius: 5px;
+  }
+
+  .projects__gallery-controls {
+    gap: 18px;
+  }
+
+  .projects__gallery-arrow {
+    width: 34px;
+    height: 34px;
+  }
+
+  .projects__visual--tablet .projects__floating-label {
+    right: 3%;
+    bottom: 25%;
+    font-size: 9px;
+    padding: 7px 9px;
+  }
+}
+
+@media (max-width: 380px) {
+  .projects__tablet {
+    padding: 6px 9px;
+    border-radius: 11px;
+  }
+
+  .projects__visual--tablet .projects__floating-label {
+    font-size: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects__gallery-arrow,
+  .projects__gallery-dot {
+    transition: none;
+  }
+}
+
+/* ========================================
+   PLAYWRIGHT - TAMAÑO EQUILIBRADO
+======================================== */
+
+/* Dar a Playwright la misma proporción de
+   columnas que Dinac Planner */
+
+.projects__project:has(.projects__visual--tablet) {
+  grid-template-columns:
+    minmax(320px, 0.78fr)
+    minmax(0, 1.22fr);
+}
+
+/* Aprovechar el espacio disponible */
+
+.projects__visual--tablet {
+  width: 100%;
+  min-height: 430px;
+}
+
+.projects__tablet-gallery {
+  width: 100%;
+  max-width: 735px;
+}
+
+/* Reducir bordes para ampliar la pantalla */
+
+.projects__tablet {
+  width: 100%;
+  padding: 10px 13px;
+  border-radius: 19px;
+}
+
+.projects__tablet-screen {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+/* Mantener los controles centrados */
+
+.projects__gallery-controls {
+  margin-top: 4px;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 850px) {
+  .projects__project:has(.projects__visual--tablet) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .projects__tablet-gallery {
+    max-width: 670px;
+  }
+}
+
+@media (max-width: 650px) {
+  .projects__tablet-gallery {
+    max-width: 100%;
+  }
+
+  .projects__tablet {
+    padding: 7px 9px;
+    border-radius: 13px;
+  }
+}
+

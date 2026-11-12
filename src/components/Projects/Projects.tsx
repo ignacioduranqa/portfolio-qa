@@ -1,12 +1,17 @@
 
+import { useState } from 'react'
+
 import {
   FaCalendarAlt,
   FaCheck,
+  FaChevronLeft,
+  FaChevronRight,
   FaExternalLinkAlt,
   FaGithub,
   FaReact,
   FaJava,
   FaCode,
+  FaTheaterMasks,
 } from 'react-icons/fa'
 
 import {
@@ -15,12 +20,15 @@ import {
   SiVite,
   SiSelenium,
   SiApachemaven,
+  SiNodedotjs,
 } from 'react-icons/si'
 
 import Reveal from '../Reveal/Reveal'
 
 import dinacPlannerImage from '../../assets/images/dinac-planner.png'
 import qaAutomationImage from '../../assets/images/qa-automation.png'
+import playwrightReport1 from '../../assets/images/playwright-report-1.png'
+import playwrightReport2 from '../../assets/images/playwright-report-2.png'
 
 import './Projects.css'
 
@@ -33,12 +41,13 @@ const projects = [
       'Aplicación web de agenda desarrollada para organizar eventos de forma sencilla mediante un calendario mensual, categorías, búsqueda, recordatorios y notificaciones.',
     secondaryDescription:
       'El proyecto incorpora operaciones CRUD conectadas a Supabase y una interfaz responsive adaptada para escritorio, tablet y dispositivos móviles.',
-    image: dinacPlannerImage,
+    images: [dinacPlannerImage],
     imageLabel: 'dinac-planner.vercel.app',
     status: 'Proyecto publicado',
     liveUrl: 'https://dinac-planner.vercel.app/',
     githubUrl:
       'https://github.com/ignacioduranqa/dinac-planner',
+    device: 'laptop',
     technologies: [
       { name: 'React', icon: FaReact },
       { name: 'TypeScript', icon: SiTypescript },
@@ -62,12 +71,13 @@ const projects = [
       'Proyecto de automatización de pruebas funcionales sobre Automation Exercise, utilizando Java, Selenium WebDriver, JUnit 5 y Maven, con arquitectura Page Object Model (POM).',
     secondaryDescription:
       'Suite de 15 pruebas automatizadas que cubren flujos de registro, autenticación, catálogo, carrito y compra end-to-end, ejecutadas exitosamente sin fallos ni errores.',
-    image: qaAutomationImage,
+    images: [qaAutomationImage],
     imageLabel: 'github.com/ignacioduranqa',
     status: '15 pruebas ejecutadas',
     liveUrl: null,
     githubUrl:
       'https://github.com/ignacioduranqa/automation-exercise-java',
+    device: 'laptop',
     technologies: [
       { name: 'Java', icon: FaJava },
       { name: 'Selenium', icon: SiSelenium },
@@ -83,7 +93,167 @@ const projects = [
       'Ejecución con Maven y JUnit 5.',
     ],
   },
+  {
+    id: 'playwright-automation',
+    type: 'Proyecto QA Automation',
+    title: 'QA Automation | Playwright',
+    description:
+      'Proyecto de automatización de pruebas funcionales sobre SoloTodo, desarrollado con Playwright y TypeScript para validar diferentes funcionalidades de una plataforma web de comparación de productos.',
+    secondaryDescription:
+      'Incluye escenarios de navegación, búsqueda, filtros, ordenamiento, detalle de productos, favoritos, cambio de tema y autenticación, utilizando validaciones dinámicas y reportes de ejecución de Playwright.',
+    images: [playwrightReport1, playwrightReport2],
+    imageLabel: 'Playwright Test Report',
+    status: 'Reportes de ejecución',
+    liveUrl: null,
+    githubUrl:
+      'https://github.com/ignacioduranqa/solotodo-playwright-qa',
+    device: 'tablet',
+    technologies: [
+      { name: 'Playwright', icon: FaTheaterMasks },
+      { name: 'TypeScript', icon: SiTypescript },
+      { name: 'Node.js', icon: SiNodedotjs },
+    ],
+    features: [
+      'Pruebas funcionales automatizadas.',
+      'Validación dinámica de productos.',
+      'Búsqueda, filtros y ordenamiento.',
+      'Gestión de favoritos y autenticación.',
+      'Reportes HTML y trazas de ejecución.',
+      'Validaciones de carga y visualización.',
+    ],
+  },
 ]
+
+type Project = (typeof projects)[number]
+
+function ProjectVisual({ project }: { project: Project }) {
+  const [activeImage, setActiveImage] = useState(0)
+
+  const isTablet = project.device === 'tablet'
+  const hasMultipleImages = project.images.length > 1
+
+  const changeImage = (direction: number) => {
+    setActiveImage((current) =>
+      (current + direction + project.images.length) %
+      project.images.length
+    )
+  }
+
+  return (
+    <div
+      className={`projects__visual ${
+        project.id === 'qa-automation'
+          ? 'projects__visual--qa'
+          : ''
+      } ${
+        isTablet ? 'projects__visual--tablet' : ''
+      }`}
+    >
+      <div className="projects__visual-glow" />
+
+      {isTablet ? (
+        <div className="projects__tablet-gallery">
+          <div className="projects__tablet">
+            <div className="projects__tablet-camera" />
+
+            <div className="projects__tablet-screen">
+              <img
+                src={project.images[activeImage]}
+                alt={`Reporte Playwright, captura ${
+                  activeImage + 1
+                } de ${project.images.length}`}
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          {hasMultipleImages && (
+            <div
+              className="projects__gallery-controls"
+              aria-label="Controles de capturas Playwright"
+            >
+              <button
+                type="button"
+                className="projects__gallery-arrow"
+                onClick={() => changeImage(-1)}
+                aria-label="Ver captura anterior"
+              >
+                <FaChevronLeft aria-hidden="true" />
+              </button>
+
+              <div className="projects__gallery-dots">
+                {project.images.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    className={`projects__gallery-dot ${
+                      activeImage === index
+                        ? 'projects__gallery-dot--active'
+                        : ''
+                    }`}
+                    onClick={() => setActiveImage(index)}
+                    aria-label={`Ver captura ${index + 1}`}
+                    aria-current={
+                      activeImage === index
+                        ? 'true'
+                        : undefined
+                    }
+                  />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                className="projects__gallery-arrow"
+                onClick={() => changeImage(1)}
+                aria-label="Ver siguiente captura"
+              >
+                <FaChevronRight aria-hidden="true" />
+              </button>
+            </div>
+          )}
+
+          <span className="projects__gallery-counter">
+            {activeImage + 1} / {project.images.length}
+          </span>
+        </div>
+      ) : (
+        <div className="projects__laptop">
+          <div className="projects__screen">
+            <div className="projects__screen-top">
+              <span />
+              <span />
+              <span />
+
+              <div className="projects__screen-url">
+                {project.imageLabel}
+              </div>
+            </div>
+
+            <div className="projects__screen-content">
+              <img
+                src={project.images[0]}
+                alt={`Vista de ${project.title}`}
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <div className="projects__laptop-bottom">
+            <div className="projects__laptop-notch" />
+          </div>
+
+          <div className="projects__laptop-shadow" />
+        </div>
+      )}
+
+      <div className="projects__floating-label">
+        <span />
+        {project.status}
+      </div>
+    </div>
+  )
+}
 
 function Projects() {
   return (
@@ -129,9 +299,7 @@ function Projects() {
               key={project.id}
             >
               <Reveal
-                direction={
-                  isReverse ? 'right' : 'left'
-                }
+                direction={isReverse ? 'right' : 'left'}
                 duration={750}
                 distance={34}
                 className="projects__content-reveal"
@@ -149,39 +317,34 @@ function Projects() {
                   />
 
                   <p>{project.description}</p>
-
                   <p>{project.secondaryDescription}</p>
 
                   <div className="projects__technologies">
-                    {project.technologies.map(
-                      (technology) => {
-                        const Icon = technology.icon
+                    {project.technologies.map((technology) => {
+                      const Icon = technology.icon
 
-                        return (
-                          <span
-                            className="projects__technology"
-                            key={technology.name}
-                          >
-                            <Icon aria-hidden="true" />
-                            {technology.name}
-                          </span>
-                        )
-                      },
-                    )}
+                      return (
+                        <span
+                          className="projects__technology"
+                          key={technology.name}
+                        >
+                          <Icon aria-hidden="true" />
+                          {technology.name}
+                        </span>
+                      )
+                    })}
                   </div>
 
                   <div className="projects__features">
-                    {project.features.map(
-                      (feature) => (
-                        <div
-                          className="projects__feature"
-                          key={feature}
-                        >
-                          <FaCheck aria-hidden="true" />
-                          <span>{feature}</span>
-                        </div>
-                      ),
-                    )}
+                    {project.features.map((feature) => (
+                      <div
+                        className="projects__feature"
+                        key={feature}
+                      >
+                        <FaCheck aria-hidden="true" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
                   </div>
 
                   <div className="projects__actions">
@@ -201,77 +364,37 @@ function Projects() {
                       </a>
                     )}
 
-                    <a
-                      className={`projects__button ${
-                        project.liveUrl
-                          ? 'projects__button--secondary'
-                          : 'projects__button--primary'
-                      }`}
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaGithub aria-hidden="true" />
-                      <span>Ver repositorio</span>
-                      <FaExternalLinkAlt
-                        className="projects__button-external"
-                        aria-hidden="true"
-                      />
-                    </a>
+                    {project.githubUrl && (
+                      <a
+                        className={`projects__button ${
+                          project.liveUrl
+                            ? 'projects__button--secondary'
+                            : 'projects__button--primary'
+                        }`}
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaGithub aria-hidden="true" />
+                        <span>Ver repositorio</span>
+                        <FaExternalLinkAlt
+                          className="projects__button-external"
+                          aria-hidden="true"
+                        />
+                      </a>
+                    )}
                   </div>
                 </div>
               </Reveal>
 
               <Reveal
-                direction={
-                  isReverse ? 'left' : 'right'
-                }
+                direction={isReverse ? 'left' : 'right'}
                 delay={100}
                 duration={850}
                 distance={40}
                 className="projects__visual-reveal"
               >
-                <div
-                  className={`projects__visual ${
-                    project.id === 'qa-automation'
-                      ? 'projects__visual--qa'
-                      : ''
-                  }`}
-                >
-                  <div className="projects__visual-glow" />
-
-                  <div className="projects__laptop">
-                    <div className="projects__screen">
-                      <div className="projects__screen-top">
-                        <span />
-                        <span />
-                        <span />
-
-                        <div className="projects__screen-url">
-                          {project.imageLabel}
-                        </div>
-                      </div>
-
-                      <div className="projects__screen-content">
-                        <img
-                          src={project.image}
-                          alt={`Vista de ${project.title}`}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="projects__laptop-bottom">
-                      <div className="projects__laptop-notch" />
-                    </div>
-
-                    <div className="projects__laptop-shadow" />
-                  </div>
-
-                  <div className="projects__floating-label">
-                    <span />
-                    {project.status}
-                  </div>
-                </div>
+                <ProjectVisual project={project} />
               </Reveal>
             </article>
           )
