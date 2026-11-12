@@ -1,3 +1,6 @@
+
+import { useTranslation } from 'react-i18next'
+
 import Reveal from '../Reveal/Reveal'
 
 import './About.css'
@@ -5,28 +8,22 @@ import profileImage from '../../assets/images/perfil-ignacio.jpg'
 
 const highlights = [
   {
-    title: 'Experiencia en proyectos web',
-    description:
-      'Validación de funcionalidades y flujos de negocio.',
+    id: 'webProjects',
   },
   {
-    title: 'Trabajo bajo Scrum',
-    description:
-      'Participación en ceremonias y coordinación con el equipo.',
+    id: 'scrum',
   },
   {
-    title: 'Trabajo colaborativo',
-    description:
-      'Comunicación con desarrollo, QA y áreas de negocio.',
+    id: 'collaboration',
   },
   {
-    title: 'Enfoque en calidad',
-    description:
-      'Seguimiento de incidencias y mejora continua.',
+    id: 'quality',
   },
 ]
 
 function About() {
+  const { t } = useTranslation()
+
   return (
     <section className="about" id="sobre-mi">
       <Reveal
@@ -36,11 +33,11 @@ function About() {
       >
         <div className="about__heading">
           <span className="about__eyebrow">
-            Conóceme
+            {t('about.eyebrow')}
           </span>
 
           <h2 className="about__title">
-            Sobre mí
+            {t('about.title')}
           </h2>
 
           <div
@@ -61,7 +58,7 @@ function About() {
             <div className="about__image-container">
               <img
                 src={profileImage}
-                alt="Ignacio Durán, Analista QA Funcional"
+                alt={t('about.imageAlt')}
               />
             </div>
           </div>
@@ -75,24 +72,18 @@ function About() {
           className="about__info-reveal"
         >
           <div className="about__info">
-            <h3>Analista QA Funcional</h3>
+            <h3>{t('about.role')}</h3>
 
-            <p>
-              Soy Analista QA Funcional con experiencia en proyectos web. He participado en el diseño y ejecución de casos de prueba, revisión de historias de usuario, validación de criterios de aceptación y ejecución de pruebas funcionales y de regresión. También he gestionado y realizado seguimiento de incidencias mediante Jira.
-            </p>
+            <p>{t('about.paragraph1')}</p>
 
-            <p>
-              Participé en proyectos para AFC Chile bajo metodología Scrum, colaborando con equipos de desarrollo, QA y negocio para asegurar la calidad de las funcionalidades antes de su liberación.
-            </p>
+            <p>{t('about.paragraph2')}</p>
 
-            <p>
-              Me interesa seguir creciendo en el área de Calidad de Software, aportando mediante pruebas funcionales, comunicación efectiva y mejora continua de los procesos de calidad.
-            </p>
+            <p>{t('about.paragraph3')}</p>
 
             <div className="about__highlights">
               {highlights.map((highlight, index) => (
                 <Reveal
-                  key={highlight.title}
+                  key={highlight.id}
                   direction="up"
                   delay={Math.min(index * 80, 240)}
                   duration={600}
@@ -108,9 +99,13 @@ function About() {
                     </span>
 
                     <div>
-                      <h4>{highlight.title}</h4>
+                      <h4>
+                        {t(`about.highlights.${highlight.id}.title`)}
+                      </h4>
 
-                      <p>{highlight.description}</p>
+                      <p>
+                        {t(`about.highlights.${highlight.id}.description`)}
+                      </p>
                     </div>
                   </article>
                 </Reveal>
@@ -124,10 +119,10 @@ function About() {
               distance={18}
             >
               <div className="about__contact">
-                <p>¿Buscas un Analista QA?</p>
+                <p>{t('about.contactQuestion')}</p>
 
                 <a href="#contacto">
-                  Hablemos
+                  {t('about.contactButton')}
                   <span aria-hidden="true">→</span>
                 </a>
               </div>

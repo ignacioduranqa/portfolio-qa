@@ -1,5 +1,6 @@
 
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import {
   SiJira,
@@ -26,9 +27,13 @@ import './Skills.css'
 import {
   tools,
   learningSkills,
-  methodologies,
-  testingTypes,
+  type Language,
+  type LocalizedText,
 } from '../../data/skills'
+
+// ========================================
+// ICONOS
+// ========================================
 
 const toolIcons: Record<string, IconType> = {
   jira: SiJira,
@@ -47,11 +52,37 @@ const learningIcons: Record<string, IconType> = {
   'katalon-mobile': FaMobileAlt,
 }
 
+// ========================================
+// CLAVES DE TRADUCCIÓN
+// ========================================
+
+const methodologyKeys = [
+  'scrum',
+  'userStories',
+  'acceptanceCriteria',
+  'defectManagement',
+  'impactAnalysis',
+]
+
+const testingTypeKeys = [
+  'functional',
+  'regression',
+  'smoke',
+  'endToEnd',
+  'blackBox',
+  'mobile',
+]
+
+// ========================================
+// COMPONENTE DE DETALLE
+// ========================================
+
 interface ToolDetailProps {
   name: string
-  description: string
-  details: string[]
+  description: LocalizedText
+  details: LocalizedText[]
   Icon: IconType
+  language: Language
 }
 
 function ToolDetail({
@@ -59,7 +90,10 @@ function ToolDetail({
   description,
   details,
   Icon,
+  language,
 }: ToolDetailProps) {
+  const { t } = useTranslation()
+
   return (
     <article className="skills__tool-detail">
       <div className="skills__tool-detail-heading">
@@ -70,7 +104,7 @@ function ToolDetail({
 
         <div>
           <span className="skills__tool-detail-label">
-            Uso profesional
+            {t('skills.professionalUse')}
           </span>
 
           <h4>{name}</h4>
@@ -78,15 +112,17 @@ function ToolDetail({
       </div>
 
       <p className="skills__tool-detail-description">
-        {description}
+        {description[language]}
       </p>
 
       <ul className="skills__tool-detail-list">
-        {details.map((detail) => (
-          <li key={detail}>
+        {details.map((detail, index) => (
+          <li key={index}>
             <FaCheck aria-hidden="true" />
 
-            <span>{detail}</span>
+            <span>
+              {detail[language]}
+            </span>
           </li>
         ))}
       </ul>
@@ -94,7 +130,18 @@ function ToolDetail({
   )
 }
 
+// ========================================
+// COMPONENTE PRINCIPAL
+// ========================================
+
 function Skills() {
+  const { t, i18n } = useTranslation()
+
+  const language: Language =
+    i18n.resolvedLanguage === 'en'
+      ? 'en'
+      : 'es'
+
   const [selectedTool, setSelectedTool] =
     useState<string | null>(null)
 
@@ -119,19 +166,19 @@ function Skills() {
       className="skills"
       id="habilidades"
     >
+      {/* ENCABEZADO */}
+
       <div className="skills__heading">
         <span className="skills__eyebrow">
-          Mi caja de herramientas
+          {t('skills.eyebrow')}
         </span>
 
         <h2 className="skills__title">
-          Herramientas y conocimientos
+          {t('skills.title')}
         </h2>
 
         <p className="skills__description">
-          Herramientas, metodologías y tipos de pruebas
-          que he utilizado durante mi experiencia
-          y formación en calidad de software.
+          {t('skills.description')}
         </p>
 
         <div
@@ -145,7 +192,9 @@ function Skills() {
 
         <div className="skills__section">
           <div className="skills__section-heading">
-            <h3>Herramientas</h3>
+            <h3>
+              {t('skills.toolsTitle')}
+            </h3>
           </div>
 
           <div
@@ -198,6 +247,8 @@ function Skills() {
                       </span>
                     </button>
 
+                    {/* DETALLE ESCRITORIO */}
+
                     <div
                       className={`skills__desktop-detail ${
                         isSelected
@@ -213,6 +264,7 @@ function Skills() {
                           description={tool.description}
                           details={tool.details}
                           Icon={Icon}
+                          language={language}
                         />
                       )}
                     </div>
@@ -220,6 +272,8 @@ function Skills() {
                 )
               })}
             </div>
+
+            {/* DETALLE MÓVIL */}
 
             <div
               className={`skills__mobile-detail ${
@@ -243,6 +297,7 @@ function Skills() {
                         selectedToolData.details
                       }
                       Icon={SelectedToolIcon}
+                      language={language}
                     />
                   )}
               </div>
@@ -280,44 +335,48 @@ function Skills() {
           </div>
         </div>
 
-        {/* METODOLOGÍAS Y TIPOS DE PRUEBAS */}
+        {/* METODOLOGÍAS Y TIPOS DE PRUEBA */}
 
         <div className="skills__knowledge-grid">
+          {/* METODOLOGÍAS */}
+
           <div className="skills__knowledge">
             <div className="skills__knowledge-heading">
-              <h3>Metodologías y análisis</h3>
+              <h3>
+                {t('skills.methodologiesTitle')}
+              </h3>
             </div>
 
             <div className="skills__chips">
-              {methodologies.map(
-                (methodology) => (
-                  <span
-                    className="skills__chip"
-                    key={methodology}
-                  >
-                    {methodology}
-                  </span>
-                ),
-              )}
+              {methodologyKeys.map((key) => (
+                <span
+                  className="skills__chip"
+                  key={key}
+                >
+                  {t(`skills.methodologies.${key}`)}
+                </span>
+              ))}
             </div>
           </div>
 
+          {/* TIPOS DE PRUEBA */}
+
           <div className="skills__knowledge">
             <div className="skills__knowledge-heading">
-              <h3>Tipos de prueba</h3>
+              <h3>
+                {t('skills.testingTypesTitle')}
+              </h3>
             </div>
 
             <div className="skills__chips">
-              {testingTypes.map(
-                (testingType) => (
-                  <span
-                    className="skills__chip"
-                    key={testingType}
-                  >
-                    {testingType}
-                  </span>
-                ),
-              )}
+              {testingTypeKeys.map((key) => (
+                <span
+                  className="skills__chip"
+                  key={key}
+                >
+                  {t(`skills.testingTypes.${key}`)}
+                </span>
+              ))}
             </div>
           </div>
         </div>

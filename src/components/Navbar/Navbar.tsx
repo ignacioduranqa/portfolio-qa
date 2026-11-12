@@ -1,37 +1,22 @@
+
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import {
   FaBars,
   FaXmark,
+  FaGlobe,
 } from 'react-icons/fa6'
 
 import './Navbar.css'
 
 const navigationItems = [
-  {
-    id: 'sobre-mi',
-    label: 'Sobre mí',
-  },
-  {
-    id: 'experiencia',
-    label: 'Experiencia',
-  },
-  {
-    id: 'habilidades',
-    label: 'Habilidades',
-  },
-  {
-    id: 'certificaciones',
-    label: 'Certificaciones',
-  },
-  {
-    id: 'proyectos',
-    label: 'Proyectos',
-  },
-  {
-    id: 'contacto',
-    label: 'Contacto',
-  },
+  { id: 'sobre-mi', key: 'about' },
+  { id: 'experiencia', key: 'experience' },
+  { id: 'habilidades', key: 'skills' },
+  { id: 'certificaciones', key: 'certifications' },
+  { id: 'proyectos', key: 'projects' },
+  { id: 'contacto', key: 'contact' },
 ]
 
 const sectionIds = [
@@ -40,16 +25,33 @@ const sectionIds = [
 ]
 
 function Navbar() {
+  const { t, i18n } = useTranslation()
+
   const [activeSection, setActiveSection] =
     useState('inicio')
 
   const [isMenuOpen, setIsMenuOpen] =
     useState(false)
 
-  /*
-   * Detecta qué sección está visible para
-   * marcar el enlace correspondiente.
-   */
+  const currentLanguage =
+    i18n.resolvedLanguage === 'en' ? 'en' : 'es'
+
+  function changeLanguage(language: 'es' | 'en') {
+    void i18n.changeLanguage(language)
+
+    try {
+      localStorage.setItem('portfolio-language', language)
+    } catch {
+      // El selector funciona aunque no se pueda guardar.
+    }
+
+    document.documentElement.lang = language
+  }
+
+  useEffect(() => {
+    document.documentElement.lang = currentLanguage
+  }, [currentLanguage])
+
   useEffect(() => {
     const sections = sectionIds
       .map((id) => document.getElementById(id))
@@ -116,10 +118,6 @@ function Navbar() {
     }
   }, [])
 
-  /*
-   * Bloquea el desplazamiento de la página
-   * cuando el menú móvil está abierto.
-   */
   useEffect(() => {
     if (!isMenuOpen) {
       document.body.style.overflow = ''
@@ -133,9 +131,6 @@ function Navbar() {
     }
   }, [isMenuOpen])
 
-  /*
-   * Permite cerrar el menú con Escape.
-   */
   useEffect(() => {
     function handleEscape(event: KeyboardEvent) {
       if (event.key === 'Escape') {
@@ -156,10 +151,6 @@ function Navbar() {
     }
   }, [])
 
-  /*
-   * Cierra el menú si la ventana vuelve
-   * al tamaño de escritorio.
-   */
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth > 760) {
@@ -180,24 +171,20 @@ function Navbar() {
     }
   }, [])
 
-  function handleNavigation(
-    sectionId: string,
-  ) {
+  function handleNavigation(sectionId: string) {
     setActiveSection(sectionId)
     setIsMenuOpen(false)
   }
 
   function toggleMenu() {
-    setIsMenuOpen((currentState) =>
-      !currentState
-    )
+    setIsMenuOpen((currentState) => !currentState)
   }
 
   return (
     <>
       <nav
         className="navbar"
-        aria-label="Navegación principal"
+        aria-label={t('navbar.navigation')}
       >
         <a
           className={`navbar__logo ${
@@ -206,87 +193,133 @@ function Navbar() {
               : ''
           }`}
           href="#inicio"
-          aria-label="Ir al inicio"
+          aria-label={t('navbar.home')}
           aria-current={
             activeSection === 'inicio'
               ? 'page'
               : undefined
           }
-          onClick={() =>
-            handleNavigation('inicio')
-          }
+          onClick={() => handleNavigation('inicio')}
         >
           <span className="navbar__logo-text">
             IS
           </span>
         </a>
 
-        <button
-          className={`navbar__menu-button ${
-            isMenuOpen
-              ? 'navbar__menu-button--open'
-              : ''
-          }`}
-          type="button"
-          aria-label={
-            isMenuOpen
-              ? 'Cerrar menú'
-              : 'Abrir menú'
-          }
-          aria-expanded={isMenuOpen}
-          aria-controls="navbar-navigation"
-          onClick={toggleMenu}
-        >
-          {isMenuOpen ? (
-            <FaXmark aria-hidden="true" />
-          ) : (
-            <FaBars aria-hidden="true" />
-          )}
-        </button>
+        <div className="navbar__right">
+          <ul
+            className={`navbar__links ${
+              isMenuOpen
+                ? 'navbar__links--open'
+                : ''
+            }`}
+            id="navbar-navigation"
+          >
+            {navigationItems.map((item) => {
+              const isActive =
+                activeSection === item.id
 
-        <ul
-          className={`navbar__links ${
-            isMenuOpen
-              ? 'navbar__links--open'
-              : ''
-          }`}
-          id="navbar-navigation"
-        >
-          {navigationItems.map((item) => {
-            const isActive =
-              activeSection === item.id
-
-            return (
-              <li key={item.id}>
-                <a
-                  className={
-                    isActive
-                      ? 'navbar__link navbar__link--active'
-                      : 'navbar__link'
-                  }
-                  href={`#${item.id}`}
-                  aria-current={
-                    isActive
-                      ? 'page'
-                      : undefined
-                  }
-                  onClick={() =>
-                    handleNavigation(item.id)
-                  }
-                >
-                  <span>{item.label}</span>
-
-                  <span
-                    className="navbar__link-arrow"
-                    aria-hidden="true"
+              return (
+                <li key={item.id}>
+                  <a
+                    className={
+                      isActive
+                        ? 'navbar__link navbar__link--active'
+                        : 'navbar__link'
+                    }
+                    href={`#${item.id}`}
+                    aria-current={
+                      isActive ? 'page' : undefined
+                    }
+                    onClick={() =>
+                      handleNavigation(item.id)
+                    }
                   >
-                    →
-                  </span>
-                </a>
-              </li>
-            )
-          })}
-        </ul>
+                    <span>
+                      {t(`navbar.${item.key}`)}
+                    </span>
+
+                    <span
+                      className="navbar__link-arrow"
+                      aria-hidden="true"
+                    >
+                      →
+                    </span>
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+
+          <div
+            className="navbar__language"
+            role="group"
+            aria-label={t('navbar.language')}
+          >
+            <FaGlobe
+              className="navbar__language-icon"
+              aria-hidden="true"
+            />
+
+            <button
+              type="button"
+              className={`navbar__language-button ${
+                currentLanguage === 'es'
+                  ? 'navbar__language-button--active'
+                  : ''
+              }`}
+              aria-label="Español"
+              aria-pressed={currentLanguage === 'es'}
+              onClick={() => changeLanguage('es')}
+            >
+              ES
+            </button>
+
+            <span
+              className="navbar__language-separator"
+              aria-hidden="true"
+            >
+              /
+            </span>
+
+            <button
+              type="button"
+              className={`navbar__language-button ${
+                currentLanguage === 'en'
+                  ? 'navbar__language-button--active'
+                  : ''
+              }`}
+              aria-label="English"
+              aria-pressed={currentLanguage === 'en'}
+              onClick={() => changeLanguage('en')}
+            >
+              EN
+            </button>
+          </div>
+
+          <button
+            className={`navbar__menu-button ${
+              isMenuOpen
+                ? 'navbar__menu-button--open'
+                : ''
+            }`}
+            type="button"
+            aria-label={
+              isMenuOpen
+                ? t('navbar.closeMenu')
+                : t('navbar.openMenu')
+            }
+            aria-expanded={isMenuOpen}
+            aria-controls="navbar-navigation"
+            onClick={toggleMenu}
+          >
+            {isMenuOpen ? (
+              <FaXmark aria-hidden="true" />
+            ) : (
+              <FaBars aria-hidden="true" />
+            )}
+          </button>
+        </div>
       </nav>
 
       <button
@@ -296,7 +329,7 @@ function Navbar() {
             : ''
         }`}
         type="button"
-        aria-label="Cerrar menú de navegación"
+        aria-label={t('navbar.closeNavigation')}
         tabIndex={isMenuOpen ? 0 : -1}
         onClick={() => setIsMenuOpen(false)}
       />

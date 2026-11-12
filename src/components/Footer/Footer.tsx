@@ -1,8 +1,13 @@
+
+import { useTranslation } from 'react-i18next'
+
 import { FaArrowUp } from 'react-icons/fa6'
 
 import './Footer.css'
 
 function Footer() {
+  const { t } = useTranslation()
+
   const currentYear = new Date().getFullYear()
 
   function scrollToTop() {
@@ -16,16 +21,18 @@ function Footer() {
     <footer className="footer">
       <div className="footer__container">
         <p className="footer__copyright">
-          © {currentYear} Ignacio Durán · Analista QA Funcional
+          © {currentYear} Ignacio Durán · {t('footer.role')}
         </p>
 
         <button
           className="footer__button"
           type="button"
           onClick={scrollToTop}
-          aria-label="Volver arriba"
+          aria-label={t('footer.backToTop')}
         >
-          <span>Volver arriba</span>
+          <span>
+            {t('footer.backToTop')}
+          </span>
 
           <FaArrowUp aria-hidden="true" />
         </button>

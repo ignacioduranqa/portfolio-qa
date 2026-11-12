@@ -1,5 +1,6 @@
 
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import {
   FaCalendarAlt,
@@ -32,101 +33,270 @@ import playwrightReport2 from '../../assets/images/playwright-report-2.png'
 
 import './Projects.css'
 
+// ========================================
+// TIPOS
+// ========================================
+
+type Language = 'es' | 'en'
+
+type LocalizedText = {
+  es: string
+  en: string
+}
+
+// ========================================
+// PROYECTOS
+// ========================================
+
 const projects = [
   {
     id: 'dinac-planner',
-    type: 'Proyecto personal',
+
+    type: {
+      es: 'Proyecto personal',
+      en: 'Personal Project',
+    },
+
     title: 'Dinac Planner',
-    description:
-      'Aplicación web de agenda desarrollada para organizar eventos de forma sencilla mediante un calendario mensual, categorías, búsqueda, recordatorios y notificaciones.',
-    secondaryDescription:
-      'El proyecto incorpora operaciones CRUD conectadas a Supabase y una interfaz responsive adaptada para escritorio, tablet y dispositivos móviles.',
+
+    description: {
+      es: 'Aplicación web de agenda desarrollada para organizar eventos de forma sencilla mediante un calendario mensual, categorías, búsqueda, recordatorios y notificaciones.',
+      en: 'A web-based planner designed to organize events through a monthly calendar, categories, search functionality, reminders, and notifications.',
+    },
+
+    secondaryDescription: {
+      es: 'El proyecto incorpora operaciones CRUD conectadas a Supabase y una interfaz responsive adaptada para escritorio, tablet y dispositivos móviles.',
+      en: 'The project includes CRUD operations connected to Supabase and a responsive interface optimized for desktop, tablet, and mobile devices.',
+    },
+
     images: [dinacPlannerImage],
     imageLabel: 'dinac-planner.vercel.app',
-    status: 'Proyecto publicado',
+
+    status: {
+      es: 'Proyecto publicado',
+      en: 'Live Project',
+    },
+
     liveUrl: 'https://dinac-planner.vercel.app/',
+
     githubUrl:
       'https://github.com/ignacioduranqa/dinac-planner',
+
     device: 'laptop',
+
     technologies: [
       { name: 'React', icon: FaReact },
       { name: 'TypeScript', icon: SiTypescript },
       { name: 'Vite', icon: SiVite },
       { name: 'Supabase', icon: SiSupabase },
     ],
+
     features: [
-      'Creación, edición y eliminación de eventos.',
-      'Calendario mensual interactivo.',
-      'Búsqueda y clasificación por categorías.',
-      'Recordatorios y notificaciones.',
-      'Persistencia de datos mediante Supabase.',
-      'Diseño responsive para diferentes dispositivos.',
+      {
+        es: 'Creación, edición y eliminación de eventos.',
+        en: 'Creating, editing, and deleting events.',
+      },
+      {
+        es: 'Calendario mensual interactivo.',
+        en: 'Interactive monthly calendar.',
+      },
+      {
+        es: 'Búsqueda y clasificación por categorías.',
+        en: 'Search and category-based organization.',
+      },
+      {
+        es: 'Recordatorios y notificaciones.',
+        en: 'Reminders and notifications.',
+      },
+      {
+        es: 'Persistencia de datos mediante Supabase.',
+        en: 'Data persistence using Supabase.',
+      },
+      {
+        es: 'Diseño responsive para diferentes dispositivos.',
+        en: 'Responsive design for different devices.',
+      },
     ],
   },
+
   {
     id: 'qa-automation',
-    type: 'Proyecto QA Automation',
+
+    type: {
+      es: 'Proyecto QA Automation',
+      en: 'QA Automation Project',
+    },
+
     title: 'QA Automation',
-    description:
-      'Proyecto de automatización de pruebas funcionales sobre Automation Exercise, utilizando Java, Selenium WebDriver, JUnit 5 y Maven, con arquitectura Page Object Model (POM).',
-    secondaryDescription:
-      'Suite de 15 pruebas automatizadas que cubren flujos de registro, autenticación, catálogo, carrito y compra end-to-end, ejecutadas exitosamente sin fallos ni errores.',
+
+    description: {
+      es: 'Proyecto de automatización de pruebas funcionales sobre Automation Exercise, utilizando Java, Selenium WebDriver, JUnit 5 y Maven, con arquitectura Page Object Model (POM).',
+      en: 'A functional test automation project for Automation Exercise, developed using Java, Selenium WebDriver, JUnit 5, and Maven, following the Page Object Model (POM) architecture.',
+    },
+
+    secondaryDescription: {
+      es: 'Suite de 15 pruebas automatizadas que cubren flujos de registro, autenticación, catálogo, carrito y compra end-to-end, ejecutadas exitosamente sin fallos ni errores.',
+      en: 'A suite of 15 automated tests covering registration, authentication, product catalog, shopping cart, and end-to-end checkout workflows, successfully executed without failures or errors.',
+    },
+
     images: [qaAutomationImage],
     imageLabel: 'github.com/ignacioduranqa',
-    status: '15 pruebas ejecutadas',
+
+    status: {
+      es: '15 pruebas ejecutadas',
+      en: '15 Tests Executed',
+    },
+
     liveUrl: null,
+
     githubUrl:
       'https://github.com/ignacioduranqa/automation-exercise-java',
+
     device: 'laptop',
+
     technologies: [
       { name: 'Java', icon: FaJava },
       { name: 'Selenium', icon: SiSelenium },
       { name: 'JUnit 5', icon: FaCode },
       { name: 'Maven', icon: SiApachemaven },
     ],
+
     features: [
-      '15 pruebas ejecutadas exitosamente.',
-      'Arquitectura Page Object Model (POM).',
-      'Pruebas funcionales y end-to-end.',
-      'Selección dinámica de productos.',
-      'Validación de precios y totales.',
-      'Ejecución con Maven y JUnit 5.',
+      {
+        es: '15 pruebas ejecutadas exitosamente.',
+        en: '15 tests successfully executed.',
+      },
+      {
+        es: 'Arquitectura Page Object Model (POM).',
+        en: 'Page Object Model (POM) architecture.',
+      },
+      {
+        es: 'Pruebas funcionales y end-to-end.',
+        en: 'Functional and end-to-end testing.',
+      },
+      {
+        es: 'Selección dinámica de productos.',
+        en: 'Dynamic product selection.',
+      },
+      {
+        es: 'Validación de precios y totales.',
+        en: 'Price and total amount validation.',
+      },
+      {
+        es: 'Ejecución con Maven y JUnit 5.',
+        en: 'Test execution using Maven and JUnit 5.',
+      },
     ],
   },
+
   {
     id: 'playwright-automation',
-    type: 'Proyecto QA Automation',
+
+    type: {
+      es: 'Proyecto QA Automation',
+      en: 'QA Automation Project',
+    },
+
     title: 'QA Automation | Playwright',
-    description:
-      'Proyecto de automatización de pruebas funcionales sobre SoloTodo, desarrollado con Playwright y TypeScript para validar diferentes funcionalidades de una plataforma web de comparación de productos.',
-    secondaryDescription:
-      'Incluye escenarios de navegación, búsqueda, filtros, ordenamiento, detalle de productos, favoritos, cambio de tema y autenticación, utilizando validaciones dinámicas y reportes de ejecución de Playwright.',
-    images: [playwrightReport1, playwrightReport2],
+
+    description: {
+      es: 'Proyecto de automatización de pruebas funcionales sobre SoloTodo, desarrollado con Playwright y TypeScript para validar diferentes funcionalidades de una plataforma web de comparación de productos.',
+      en: 'A functional test automation project for SoloTodo, developed with Playwright and TypeScript to validate features of a product comparison website.',
+    },
+
+    secondaryDescription: {
+      es: 'Incluye escenarios de navegación, búsqueda, filtros, ordenamiento, detalle de productos, favoritos, cambio de tema y autenticación, utilizando validaciones dinámicas y reportes de ejecución de Playwright.',
+      en: 'Includes test scenarios for navigation, search, filtering, sorting, product details, favorites, theme switching, and authentication, using dynamic validations and Playwright test reports.',
+    },
+
+    images: [
+      playwrightReport1,
+      playwrightReport2,
+    ],
+
     imageLabel: 'Playwright Test Report',
-    status: 'Reportes de ejecución',
+
+    status: {
+      es: 'Reportes de ejecución',
+      en: 'Test Execution Reports',
+    },
+
     liveUrl: null,
+
     githubUrl:
       'https://github.com/ignacioduranqa/solotodo-playwright-qa',
+
     device: 'tablet',
+
     technologies: [
       { name: 'Playwright', icon: FaTheaterMasks },
       { name: 'TypeScript', icon: SiTypescript },
       { name: 'Node.js', icon: SiNodedotjs },
     ],
+
     features: [
-      'Pruebas funcionales automatizadas.',
-      'Validación dinámica de productos.',
-      'Búsqueda, filtros y ordenamiento.',
-      'Gestión de favoritos y autenticación.',
-      'Reportes HTML y trazas de ejecución.',
-      'Validaciones de carga y visualización.',
+      {
+        es: 'Pruebas funcionales automatizadas.',
+        en: 'Automated functional testing.',
+      },
+      {
+        es: 'Validación dinámica de productos.',
+        en: 'Dynamic product validation.',
+      },
+      {
+        es: 'Búsqueda, filtros y ordenamiento.',
+        en: 'Search, filtering, and sorting.',
+      },
+      {
+        es: 'Gestión de favoritos y autenticación.',
+        en: 'Favorites management and authentication.',
+      },
+      {
+        es: 'Reportes HTML y trazas de ejecución.',
+        en: 'HTML reports and execution traces.',
+      },
+      {
+        es: 'Validaciones de carga y visualización.',
+        en: 'Image loading and display validation.',
+      },
     ],
   },
-]
+] satisfies Array<{
+  id: string
+  type: LocalizedText
+  title: string
+  description: LocalizedText
+  secondaryDescription: LocalizedText
+  images: string[]
+  imageLabel: string
+  status: LocalizedText
+  liveUrl: string | null
+  githubUrl: string | null
+  device: 'laptop' | 'tablet'
+  technologies: Array<{
+    name: string
+    icon: React.ComponentType<{
+      'aria-hidden'?: boolean | 'true' | 'false'
+    }>
+  }>
+  features: LocalizedText[]
+}>
 
 type Project = (typeof projects)[number]
 
-function ProjectVisual({ project }: { project: Project }) {
+// ========================================
+// VISUALIZACIÓN DEL PROYECTO
+// ========================================
+
+function ProjectVisual({
+  project,
+  language,
+}: {
+  project: Project
+  language: Language
+}) {
+  const { t } = useTranslation()
+
   const [activeImage, setActiveImage] = useState(0)
 
   const isTablet = project.device === 'tablet'
@@ -135,7 +305,7 @@ function ProjectVisual({ project }: { project: Project }) {
   const changeImage = (direction: number) => {
     setActiveImage((current) =>
       (current + direction + project.images.length) %
-      project.images.length
+      project.images.length,
     )
   }
 
@@ -159,24 +329,27 @@ function ProjectVisual({ project }: { project: Project }) {
             <div className="projects__tablet-screen">
               <img
                 src={project.images[activeImage]}
-                alt={`Reporte Playwright, captura ${
-                  activeImage + 1
-                } de ${project.images.length}`}
+                alt={t('projects.reportImageAlt', {
+                  current: activeImage + 1,
+                  total: project.images.length,
+                })}
                 loading="lazy"
               />
             </div>
           </div>
 
+          {/* CONTROLES DEL CARRUSEL */}
+
           {hasMultipleImages && (
             <div
               className="projects__gallery-controls"
-              aria-label="Controles de capturas Playwright"
+              aria-label={t('projects.galleryControls')}
             >
               <button
                 type="button"
                 className="projects__gallery-arrow"
                 onClick={() => changeImage(-1)}
-                aria-label="Ver captura anterior"
+                aria-label={t('projects.previousImage')}
               >
                 <FaChevronLeft aria-hidden="true" />
               </button>
@@ -192,7 +365,9 @@ function ProjectVisual({ project }: { project: Project }) {
                         : ''
                     }`}
                     onClick={() => setActiveImage(index)}
-                    aria-label={`Ver captura ${index + 1}`}
+                    aria-label={t('projects.viewImage', {
+                      number: index + 1,
+                    })}
                     aria-current={
                       activeImage === index
                         ? 'true'
@@ -206,7 +381,7 @@ function ProjectVisual({ project }: { project: Project }) {
                 type="button"
                 className="projects__gallery-arrow"
                 onClick={() => changeImage(1)}
-                aria-label="Ver siguiente captura"
+                aria-label={t('projects.nextImage')}
               >
                 <FaChevronRight aria-hidden="true" />
               </button>
@@ -233,7 +408,9 @@ function ProjectVisual({ project }: { project: Project }) {
             <div className="projects__screen-content">
               <img
                 src={project.images[0]}
-                alt={`Vista de ${project.title}`}
+                alt={t('projects.projectImageAlt', {
+                  title: project.title,
+                })}
                 loading="lazy"
               />
             </div>
@@ -249,15 +426,28 @@ function ProjectVisual({ project }: { project: Project }) {
 
       <div className="projects__floating-label">
         <span />
-        {project.status}
+        {project.status[language]}
       </div>
     </div>
   )
 }
 
+// ========================================
+// COMPONENTE PRINCIPAL
+// ========================================
+
 function Projects() {
+  const { t, i18n } = useTranslation()
+
+  const language: Language =
+    i18n.resolvedLanguage === 'en'
+      ? 'en'
+      : 'es'
+
   return (
     <section className="projects" id="proyectos">
+      {/* ENCABEZADO */}
+
       <Reveal
         direction="up"
         duration={700}
@@ -265,17 +455,15 @@ function Projects() {
       >
         <div className="projects__heading">
           <span className="projects__eyebrow">
-            Mi trabajo
+            {t('projects.eyebrow')}
           </span>
 
           <h2 className="projects__title">
-            Proyectos
+            {t('projects.title')}
           </h2>
 
           <p className="projects__description">
-            Proyectos personales en los que aplico
-            conocimientos de desarrollo, calidad de software
-            y nuevas herramientas.
+            {t('projects.description')}
           </p>
 
           <div
@@ -284,6 +472,8 @@ function Projects() {
           />
         </div>
       </Reveal>
+
+      {/* LISTADO DE PROYECTOS */}
 
       <div className="projects__container">
         {projects.map((project, index) => {
@@ -298,6 +488,8 @@ function Projects() {
               }`}
               key={project.id}
             >
+              {/* INFORMACIÓN */}
+
               <Reveal
                 direction={isReverse ? 'right' : 'left'}
                 duration={750}
@@ -306,7 +498,7 @@ function Projects() {
               >
                 <div className="projects__content">
                   <span className="projects__project-type">
-                    {project.type}
+                    {project.type[language]}
                   </span>
 
                   <h3>{project.title}</h3>
@@ -316,8 +508,15 @@ function Projects() {
                     aria-hidden="true"
                   />
 
-                  <p>{project.description}</p>
-                  <p>{project.secondaryDescription}</p>
+                  <p>
+                    {project.description[language]}
+                  </p>
+
+                  <p>
+                    {project.secondaryDescription[language]}
+                  </p>
+
+                  {/* TECNOLOGÍAS */}
 
                   <div className="projects__technologies">
                     {project.technologies.map((technology) => {
@@ -335,17 +534,23 @@ function Projects() {
                     })}
                   </div>
 
+                  {/* CARACTERÍSTICAS */}
+
                   <div className="projects__features">
-                    {project.features.map((feature) => (
+                    {project.features.map((feature, index) => (
                       <div
                         className="projects__feature"
-                        key={feature}
+                        key={`${project.id}-feature-${index}`}
                       >
                         <FaCheck aria-hidden="true" />
-                        <span>{feature}</span>
+                        <span>
+                          {feature[language]}
+                        </span>
                       </div>
                     ))}
                   </div>
+
+                  {/* ENLACES */}
 
                   <div className="projects__actions">
                     {project.liveUrl && (
@@ -356,7 +561,11 @@ function Projects() {
                         rel="noopener noreferrer"
                       >
                         <FaCalendarAlt aria-hidden="true" />
-                        <span>Ver proyecto</span>
+
+                        <span>
+                          {t('projects.viewProject')}
+                        </span>
+
                         <FaExternalLinkAlt
                           className="projects__button-external"
                           aria-hidden="true"
@@ -376,7 +585,11 @@ function Projects() {
                         rel="noopener noreferrer"
                       >
                         <FaGithub aria-hidden="true" />
-                        <span>Ver repositorio</span>
+
+                        <span>
+                          {t('projects.viewRepository')}
+                        </span>
+
                         <FaExternalLinkAlt
                           className="projects__button-external"
                           aria-hidden="true"
@@ -387,6 +600,8 @@ function Projects() {
                 </div>
               </Reveal>
 
+              {/* VISUALIZACIÓN */}
+
               <Reveal
                 direction={isReverse ? 'left' : 'right'}
                 delay={100}
@@ -394,7 +609,10 @@ function Projects() {
                 distance={40}
                 className="projects__visual-reveal"
               >
-                <ProjectVisual project={project} />
+                <ProjectVisual
+                  project={project}
+                  language={language}
+                />
               </Reveal>
             </article>
           )

@@ -1,4 +1,6 @@
 
+import { useTranslation } from 'react-i18next'
+
 import {
   FaAward,
   FaExternalLinkAlt,
@@ -9,14 +11,26 @@ import Reveal from '../Reveal/Reveal'
 
 import './Certifications.css'
 
-import { certifications } from '../../data/certifications'
+import {
+  certifications,
+  type Language,
+} from '../../data/certifications'
 
 function Certifications() {
+  const { t, i18n } = useTranslation()
+
+  const language: Language =
+    i18n.resolvedLanguage === 'en'
+      ? 'en'
+      : 'es'
+
   return (
     <section
       className="certifications"
       id="certificaciones"
     >
+      {/* ENCABEZADO */}
+
       <Reveal
         direction="up"
         duration={700}
@@ -24,18 +38,15 @@ function Certifications() {
       >
         <div className="certifications__heading">
           <span className="certifications__eyebrow">
-            Aprendizaje continuo
+            {t('certifications.eyebrow')}
           </span>
 
           <h2 className="certifications__title">
-            Formación y certificaciones
+            {t('certifications.title')}
           </h2>
 
           <p className="certifications__description">
-            Certificaciones que complementan mi experiencia
-            profesional y fortalecen mis conocimientos en QA,
-            metodologías ágiles, automatización y trabajo
-            colaborativo.
+            {t('certifications.description')}
           </p>
 
           <div
@@ -44,6 +55,8 @@ function Certifications() {
           />
         </div>
       </Reveal>
+
+      {/* LÍNEA DE TIEMPO */}
 
       <div className="certifications__timeline">
         <div
@@ -70,12 +83,16 @@ function Certifications() {
                     : 'certifications__item--right'
                 }`}
               >
+                {/* MARCADOR */}
+
                 <div
                   className="certifications__marker"
                   aria-hidden="true"
                 >
                   <FaAward />
                 </div>
+
+                {/* TARJETA */}
 
                 <div className="certifications__card">
                   <div className="certifications__card-header">
@@ -91,15 +108,17 @@ function Certifications() {
                         </span>
 
                         <h3>
-                          {certification.title}
+                          {certification.title[language]}
                         </h3>
                       </div>
                     </div>
 
                     <span className="certifications__category">
-                      {certification.category}
+                      {certification.category[language]}
                     </span>
                   </div>
+
+                  {/* INSTITUCIÓN Y FECHA */}
 
                   <div className="certifications__metadata">
                     <span>
@@ -114,13 +133,17 @@ function Certifications() {
                     </span>
 
                     <span>
-                      {certification.date}
+                      {certification.date[language]}
                     </span>
                   </div>
 
+                  {/* DESCRIPCIÓN */}
+
                   <p className="certifications__card-description">
-                    {certification.description}
+                    {certification.description[language]}
                   </p>
+
+                  {/* CREDENCIAL */}
 
                   {certification.credentialUrl && (
                     <a
@@ -128,10 +151,16 @@ function Certifications() {
                       href={certification.credentialUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`Ver credencial de ${certification.title}`}
+                      aria-label={t(
+                        'certifications.viewCredentialLabel',
+                        {
+                          title:
+                            certification.title[language],
+                        },
+                      )}
                     >
                       <span>
-                        Ver credencial
+                        {t('certifications.viewCredential')}
                       </span>
 
                       <FaExternalLinkAlt

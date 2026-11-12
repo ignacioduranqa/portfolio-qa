@@ -1,3 +1,6 @@
+
+import { useTranslation } from 'react-i18next'
+
 import {
   FaEnvelope,
   FaGithub,
@@ -10,6 +13,8 @@ import Reveal from '../Reveal/Reveal'
 import './Contact.css'
 
 function Contact() {
+  const { t } = useTranslation()
+
   return (
     <section
       className="contact"
@@ -30,39 +35,40 @@ function Contact() {
 
             <div className="contact__content">
               <span className="contact__eyebrow">
-                Contacto directo
+                {t('contact.eyebrow')}
               </span>
 
               <h2 className="contact__title">
-                Hablemos
+                {t('contact.title')}
               </h2>
 
               <p className="contact__description">
-                Estoy disponible para nuevas
-                oportunidades como Analista QA
-                Funcional. Puedes contactarme por
-                correo o LinkedIn para conversar.
+                {t('contact.description')}
               </p>
             </div>
+
+            {/* REDES Y CONTACTO */}
 
             <div className="contact__socials">
               <a
                 className="contact__social"
                 href="mailto:ignaciosanhueza1516@gmail.com"
-                aria-label="Enviar correo a Ignacio Durán"
-                title="Correo"
+                aria-label={t('contact.emailLabel')}
+                title={t('contact.email')}
               >
                 <FaEnvelope aria-hidden="true" />
 
-                <span>Correo</span>
+                <span>
+                  {t('contact.email')}
+                </span>
               </a>
 
               <a
                 className="contact__social"
                 href="https://www.linkedin.com/in/ignacio-dur%C3%A1n-sanhueza-3b423326b/"
                 target="_blank"
-                rel="noreferrer"
-                aria-label="Visitar LinkedIn de Ignacio Durán"
+                rel="noopener noreferrer"
+                aria-label={t('contact.linkedinLabel')}
                 title="LinkedIn"
               >
                 <FaLinkedinIn aria-hidden="true" />
@@ -74,8 +80,8 @@ function Contact() {
                 className="contact__social"
                 href="https://github.com/ignacioduranqa"
                 target="_blank"
-                rel="noreferrer"
-                aria-label="Visitar GitHub de Ignacio Durán"
+                rel="noopener noreferrer"
+                aria-label={t('contact.githubLabel')}
                 title="GitHub"
               >
                 <FaGithub aria-hidden="true" />
@@ -85,6 +91,8 @@ function Contact() {
             </div>
           </div>
         </Reveal>
+
+        {/* ANIMACIÓN VISUAL */}
 
         <Reveal
           direction="right"

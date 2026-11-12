@@ -1,6 +1,11 @@
+
+import { useTranslation } from 'react-i18next'
+
 import './Hero.css'
 
 function Hero() {
+  const { t } = useTranslation()
+
   const cvUrl =
     `${import.meta.env.BASE_URL}CV_Ignacio_Duran_Sanhueza.pdf`
 
@@ -22,7 +27,7 @@ function Hero() {
       <div className="hero__content">
         <p className="hero__eyebrow">
           <span aria-hidden="true" />
-          Hola, soy
+          {t('hero.greeting')}
         </p>
 
         <h1 className="hero__title">
@@ -31,11 +36,11 @@ function Hero() {
         </h1>
 
         <h2 className="hero__role">
-          Analista QA Funcional
+          {t('hero.role')}
         </h2>
 
         <p className="hero__description">
-          Cuento con experiencia en pruebas funcionales, revisión de historias de usuario, validación de criterios de aceptación y gestión de incidencias.
+          {t('hero.description')}
         </p>
 
         <div className="hero__actions">
@@ -43,16 +48,16 @@ function Hero() {
             className="hero__button hero__button--primary"
             href="#proyectos"
           >
-            Ver proyectos
+            {t('hero.viewProjects')}
           </a>
 
           <a
             className="hero__button hero__button--secondary"
             href={cvUrl}
             download="CV_Ignacio_Duran_Sanhueza.pdf"
-            aria-label="Descargar currículum de Ignacio Durán"
+            aria-label={t('hero.downloadCvLabel')}
           >
-            Descargar CV
+            {t('hero.downloadCv')}
           </a>
         </div>
       </div>
@@ -86,19 +91,19 @@ function Hero() {
 
             <div className="hero__card-status">
               <span />
-              Calidad en cada entrega
+              {t('hero.qualityStatus')}
             </div>
           </div>
         </div>
 
         <div className="hero__badge hero__badge--testing">
           <span />
-          Functional Testing
+          {t('hero.testingBadge')}
         </div>
 
         <div className="hero__badge hero__badge--quality">
           <span />
-          Quality First
+          {t('hero.qualityBadge')}
         </div>
       </div>
     </section>

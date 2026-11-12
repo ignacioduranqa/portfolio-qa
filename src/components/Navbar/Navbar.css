@@ -552,3 +552,218 @@
     transition: none;
   }
 }
+
+/* ========================================
+   NAVBAR - CONTENEDOR DERECHO
+======================================== */
+
+.navbar__right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 28px;
+  min-width: 0;
+}
+
+/* ========================================
+   SELECTOR DE IDIOMAS ES / EN
+======================================== */
+
+.navbar__language {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  flex-shrink: 0;
+  padding: 7px 10px;
+
+  background: rgba(53, 208, 197, 0.055);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.navbar__language:hover {
+  background: rgba(53, 208, 197, 0.09);
+  border-color: var(--border-strong);
+}
+
+.navbar__language-icon {
+  margin-right: 3px;
+  color: var(--primary);
+  font-size: 14px;
+}
+
+.navbar__language-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 24px;
+  min-height: 28px;
+  padding: 2px 3px;
+
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+
+  cursor: pointer;
+
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.navbar__language-button:hover {
+  color: var(--text-primary);
+}
+
+.navbar__language-button--active {
+  color: var(--primary-light);
+  background: rgba(53, 208, 197, 0.12);
+}
+
+.navbar__language-separator {
+  color: rgba(145, 170, 181, 0.45);
+  font-size: 11px;
+  user-select: none;
+}
+
+.navbar__language-button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* ========================================
+   PANTALLAS INTERMEDIAS
+======================================== */
+
+@media (max-width: 1250px) {
+  .navbar {
+    padding-right: 36px;
+    padding-left: 36px;
+  }
+
+  .navbar__right {
+    gap: 18px;
+  }
+
+  .navbar__links {
+    gap: 18px;
+  }
+
+  .navbar__link {
+    font-size: 0.85rem;
+  }
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (min-width: 761px) and (max-width: 1000px) {
+  .navbar {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .navbar__right {
+    gap: 12px;
+  }
+
+  .navbar__links {
+    gap: 12px;
+  }
+
+  .navbar__link {
+    font-size: 0.77rem;
+  }
+
+  .navbar__language {
+    gap: 4px;
+    padding: 5px 7px;
+  }
+}
+
+/* ========================================
+   MÓVIL
+======================================== */
+
+@media (max-width: 760px) {
+  .navbar {
+    padding: 11px 18px;
+  }
+
+  .navbar__right {
+    gap: 12px;
+  }
+
+  .navbar__language {
+    padding: 5px 8px;
+    border-radius: 10px;
+  }
+
+  .navbar__language-button {
+    min-width: 25px;
+    min-height: 30px;
+    font-size: 11px;
+  }
+
+  .navbar__language-icon {
+    font-size: 13px;
+  }
+
+  .navbar__links {
+    gap: 4px;
+  }
+}
+
+/* ========================================
+   MÓVILES PEQUEÑOS
+======================================== */
+
+@media (max-width: 420px) {
+  .navbar {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .navbar__right {
+    gap: 9px;
+  }
+
+  .navbar__language {
+    gap: 4px;
+    padding: 5px 7px;
+  }
+
+  .navbar__language-button {
+    min-width: 23px;
+    font-size: 10px;
+  }
+
+  .navbar__language-icon {
+    font-size: 12px;
+  }
+}
+
+/* ========================================
+   MOVIMIENTO REDUCIDO
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar__language,
+  .navbar__language-button {
+    transition: none;
+  }
+}

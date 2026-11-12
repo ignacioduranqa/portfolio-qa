@@ -1260,3 +1260,51 @@
   }
 }
 
+/* ========================================
+   CORRECCIÓN DE TRANSICIÓN
+   CERTIFICACIONES → PROYECTOS
+======================================== */
+
+/* ESCRITORIO */
+
+.projects {
+  padding-top: 90px;
+}
+
+/* Eliminar la franja diagonal oscura
+   que se superpone con Certificaciones */
+
+.projects::before {
+  content: none;
+}
+
+/* ========================================
+   TABLET HORIZONTAL
+======================================== */
+
+@media (max-width: 1100px) {
+  .projects {
+    padding-top: 85px;
+  }
+}
+
+/* ========================================
+   TABLET VERTICAL
+======================================== */
+
+@media (max-width: 850px) {
+  .projects {
+    padding-top: 80px;
+  }
+}
+
+/* ========================================
+   MÓVIL
+======================================== */
+
+@media (max-width: 650px) {
+  .projects {
+    padding-top: 75px;
+  }
+}
+

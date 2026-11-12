@@ -1,4 +1,6 @@
+
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import {
   FaExternalLinkAlt,
@@ -8,9 +10,18 @@ import {
 import Reveal from '../Reveal/Reveal'
 
 import './Experience.css'
-import { experiences } from '../../data/experience'
+
+import {
+  experiences,
+  type Language,
+} from '../../data/experience'
 
 function Experience() {
+  const { t, i18n } = useTranslation()
+
+  const language: Language =
+    i18n.resolvedLanguage === 'en' ? 'en' : 'es'
+
   const [openProject, setOpenProject] =
     useState<string | null>(null)
 
@@ -37,11 +48,11 @@ function Experience() {
       >
         <div className="experience__heading">
           <span className="experience__eyebrow">
-            Mi trayectoria
+            {t('experience.eyebrow')}
           </span>
 
           <h2 className="experience__title">
-            Experiencia
+            {t('experience.title')}
           </h2>
 
           <div
@@ -58,7 +69,7 @@ function Experience() {
 
           return (
             <Reveal
-              key={`${experience.company}-${experience.role}-${experience.period}`}
+              key={`${experience.company}-${index}`}
               direction="up"
               delay={Math.min(index * 90, 180)}
               duration={700}
@@ -73,21 +84,27 @@ function Experience() {
 
                 <div className="experience__card-content">
                   <span className="experience__period">
-                    {experience.period}
+                    {experience.period[language]}
                   </span>
 
-                  <h3>{experience.company}</h3>
+                  <h3>
+                    {experience.company}
+                  </h3>
 
-                  <h4>{experience.role}</h4>
+                  <h4>
+                    {experience.role[language]}
+                  </h4>
 
-                  <p>{experience.description}</p>
+                  <p>
+                    {experience.description[language]}
+                  </p>
 
                   {experience.highlights && (
                     <ul className="experience__highlights">
                       {experience.highlights.map(
-                        (highlight) => (
-                          <li key={highlight}>
-                            {highlight}
+                        (highlight, highlightIndex) => (
+                          <li key={highlightIndex}>
+                            {highlight[language]}
                           </li>
                         ),
                       )}
@@ -96,7 +113,9 @@ function Experience() {
 
                   {experience.client && (
                     <div className="experience__client">
-                      <span>Cliente</span>
+                      <span>
+                        {t('experience.client')}
+                      </span>
 
                       <strong>
                         {experience.client}
@@ -107,7 +126,7 @@ function Experience() {
                   {experience.projects && (
                     <div className="experience__projects">
                       <h5>
-                        Proyectos en los que participé
+                        {t('experience.projectsTitle')}
                       </h5>
 
                       <div className="experience__project-list">
@@ -152,13 +171,13 @@ function Experience() {
 
                                       {project.featured && (
                                         <span className="experience__project-featured">
-                                          Proyecto principal
+                                          {t('experience.featured')}
                                         </span>
                                       )}
                                     </div>
 
                                     <h6>
-                                      {project.name}
+                                      {project.name[language]}
                                     </h6>
                                   </div>
 
@@ -185,24 +204,19 @@ function Experience() {
                                 >
                                   <div className="experience__project-details">
                                     <p>
-                                      {
-                                        project.description
-                                      }
+                                      {project.description[language]}
                                     </p>
 
                                     <ul className="experience__project-responsibilities">
                                       {project.responsibilities.map(
                                         (
                                           responsibility,
+                                          responsibilityIndex,
                                         ) => (
                                           <li
-                                            key={
-                                              responsibility
-                                            }
+                                            key={responsibilityIndex}
                                           >
-                                            {
-                                              responsibility
-                                            }
+                                            {responsibility[language]}
                                           </li>
                                         ),
                                       )}
@@ -228,17 +242,15 @@ function Experience() {
 
                         <div className="experience__recommendation-text">
                           <span>
-                            Respaldo profesional
+                            {t('experience.recommendation.eyebrow')}
                           </span>
 
                           <h5>
-                            Recomendación profesional
+                            {t('experience.recommendation.title')}
                           </h5>
 
                           <p>
-                            Carta que respalda mi
-                            experiencia y desempeño como
-                            Analista QA Funcional.
+                            {t('experience.recommendation.description')}
                           </p>
                         </div>
                       </div>
@@ -247,10 +259,10 @@ function Experience() {
                         className="experience__recommendation-button"
                         href={recommendationUrl}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                       >
                         <span>
-                          Ver recomendación
+                          {t('experience.recommendation.button')}
                         </span>
 
                         <FaExternalLinkAlt
